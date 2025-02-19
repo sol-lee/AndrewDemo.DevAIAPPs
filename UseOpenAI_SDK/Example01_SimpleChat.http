@@ -1,0 +1,23 @@
+@name = Simple Chat
+
+
+###
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+    "model": "gpt-4o-mini",
+    "messages": [
+      {
+        "role": "system",
+        "content": "you are a tester, answer me what I ask you."
+      },
+      {
+        "role": "user",
+        "content": "Say: 'this is a test'."
+      }
+    ],
+    "temperature": 0.2
+  }

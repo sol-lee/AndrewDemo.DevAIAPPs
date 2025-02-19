@@ -23,7 +23,8 @@ namespace UseOpenAI_SDK
 
             //Example01_SimpleChat();
             //Example03_FunctionCalling();
-            Example06_StructuredOutputs();
+            //Example06_StructuredOutputs_JsonSchema();
+            Example06_StructuredOutputs_JsonObject();
         }
     }
 }

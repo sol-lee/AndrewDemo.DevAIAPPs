@@ -1,0 +1,203 @@
+﻿@name = Function Calling
+
+
+### STEP1, ask
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+    "model": "gpt-4o-mini",
+    "messages": [
+        {
+            "role": "user",
+            "content": "What is the weather like today?"
+        }
+    ],
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "get_weather",
+                "description": "Get current temperature for a given location.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "City and country e.g. Bogotá, Colombia"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "additionalProperties": false
+                },
+                "strict": true
+            }
+        },        
+        {
+            "type": "function",
+            "function": {
+                "name": "get_location",
+                "description": "Get the user's current location."
+            }
+        }
+    ]
+}
+
+
+
+
+### STEP2, call get_location()
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+    "model": "gpt-4o-mini",
+    "messages": [
+        {
+            "role": "user",
+            "content": "What is the weather like today?"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+          {
+            "id": "call_g9fWZjmhOZJGBxJUrhrZeHCl",
+            "type": "function",
+            "function": {
+              "name": "get_location",
+              "arguments": "{}"
+            }
+          }],
+          "refusal": null
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_g9fWZjmhOZJGBxJUrhrZeHCl",
+          "content": "taipei"
+        }
+    ],
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "get_weather",
+                "description": "Get current temperature for a given location.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "City and country e.g. Bogotá, Colombia"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "additionalProperties": false
+                },
+                "strict": true
+            }
+        },        
+        {
+            "type": "function",
+            "function": {
+                "name": "get_location",
+                "description": "Get the user's current location."
+            }
+        }
+    ]
+}
+
+
+
+### STEP3, call get_weather("taipei")
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+    "model": "gpt-4o-mini",
+    "messages": [
+        {
+            "role": "user",
+            "content": "What is the weather like today?"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+          {
+            "id": "call_g9fWZjmhOZJGBxJUrhrZeHCl",
+            "type": "function",
+            "function": {
+              "name": "get_location",
+              "arguments": "{}"
+            }
+          }],
+          "refusal": null
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "call_g9fWZjmhOZJGBxJUrhrZeHCl",
+          "content": "taipei"
+        },
+        {
+          "role": "assistant",
+          "content": null,
+          "tool_calls": [
+            {
+              "id": "call_Natw3ePyEUfRcN4Mi4lhMi3x",
+              "type": "function",
+              "function": {
+                "name": "get_weather",
+                "arguments": "{\"location\":\"Taipei\"}"
+              }
+            }
+          ],
+          "refusal": null
+        },
+        {
+            "role": "tool",
+            "tool_call_id": "call_Natw3ePyEUfRcN4Mi4lhMi3x",
+            "content": "16℃"
+        }
+    ],
+    "tools": [
+        {
+            "type": "function",
+            "function": {
+                "name": "get_weather",
+                "description": "Get current temperature for a given location.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "City and country e.g. Bogotá, Colombia"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "additionalProperties": false
+                },
+                "strict": true
+            }
+        },        
+        {
+            "type": "function",
+            "function": {
+                "name": "get_location",
+                "description": "Get the user's current location."
+            }
+        }
+    ]
+}

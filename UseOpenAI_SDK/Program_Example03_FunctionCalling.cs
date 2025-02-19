@@ -57,11 +57,14 @@ namespace UseOpenAI_SDK
 
         static void Example03_FunctionCalling()
         {
+            // https://platform.openai.com/docs/guides/function-calling
             // https://github.com/openai/openai-dotnet/blob/main/examples/Chat/Example03_FunctionCalling.cs
 
             ChatClient client = new(
                 "gpt-4o-mini",
                 OPENAI_APIKEY);
+
+
 
             #region
             List<ChatMessage> messages =
