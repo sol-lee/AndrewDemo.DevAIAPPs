@@ -18,9 +18,9 @@ namespace UseMicrosoft_SemanticKernel
             OPENAI_ORGID = config["OpenAI:OrgId"];
 
             //Example01_SimpleChatAsync().Wait();            
-            //Example03_FunctionCallingAsync().Wait();
+            Example03_FunctionCallingAsync().Wait();
             //Example06_StructuredOutputs_JsonObject_Async().Wait();
-            Example06_StructuredOutputs_JsonSchema_Async().Wait();
+            //Example06_StructuredOutputs_JsonSchema_Async().Wait();
         }
     }
 
