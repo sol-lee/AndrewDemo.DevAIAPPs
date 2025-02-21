@@ -100,3 +100,38 @@ Authorization: Bearer {{OpenAI_APIKEY}}
     }
   }
 }
+
+
+
+
+
+
+
+### Dify Workflow: JsonObject
+POST https://dify.91dev.tw/v1/workflows/run
+Content-Type: application/json
+Authorization: Bearer app-GiimfV0OtD56PzklvOnXuDw0
+
+{
+    "inputs": 
+    {
+      "math": "8x + 7 = -23"
+    },
+    "response_mode": "blocking",
+    "user": "andrew"
+}
+
+
+### Dify Workflow: JsonSchema, https://dify.91dev.tw/app/1f71e90b-b2b3-4352-a390-fb4a89f0050b/workflow
+POST https://dify.91dev.tw/v1/workflows/run
+Content-Type: application/json
+Authorization: Bearer app-cKNq5Yujc93yxRBq3N77r1IH
+
+{
+    "inputs": 
+    {
+      "math": "8x + 7 = -23"
+    },
+    "response_mode": "blocking",
+    "user": "andrew"
+}

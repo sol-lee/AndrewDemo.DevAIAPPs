@@ -21,3 +21,16 @@ Authorization: Bearer {{OpenAI_APIKEY}}
     ],
     "temperature": 0.2
   }
+
+
+
+### Dify Workflow: 
+POST https://dify.91dev.tw/v1/workflows/run
+Content-Type: application/json
+Authorization: Bearer app-WBXYRyVeQM6UXGQqqloYjcYk
+
+{
+    "inputs": {},
+    "response_mode": "blocking",
+    "user": "andrew"
+}
