@@ -3,7 +3,7 @@
 
 
 
-namespace UseMicrosoft_KernelMemoryPlugin
+namespace UseMicrosoft_SemanticKernel
 {
     /// <summary>
     /// Logging handler you might want to use to

@@ -21,7 +21,10 @@ namespace UseMicrosoft_SemanticKernel
             // Create a new kernel builder, and add AI services to it.
             // Add: OpenAI Chat Completion service.
             var builder = Kernel.CreateBuilder()
-                .AddOpenAIChatCompletion("gpt-4o-mini", OPENAI_APIKEY, OPENAI_ORGID);
+                .AddOpenAIChatCompletion(
+                    modelId: "gpt-4o-mini",
+                    apiKey: OPENAI_APIKEY,
+                    httpClient: HttpLogger.GetHttpClient(true));
 
             // Add DI services to the builder.
             // Add: Logging services.
@@ -67,15 +70,10 @@ namespace UseMicrosoft_SemanticKernel
             // Create a new kernel builder, and add AI services to it.
             // Add: OpenAI Chat Completion service.
             var builder = Kernel.CreateBuilder()
-                .AddOpenAIChatCompletion("gpt-4o-mini", OPENAI_APIKEY, OPENAI_ORGID);
-
-            // Add DI services to the builder.
-            // Add: Logging services.
-            //builder.Services
-            //    .AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
-
-            // Add a chat completion plugin to the builder.
-
+                .AddOpenAIChatCompletion(
+                    modelId: "gpt-4o-mini",
+                    apiKey: OPENAI_APIKEY,
+                    httpClient: HttpLogger.GetHttpClient(true));
 
             var kernel = builder.Build();
             var settings = new OpenAIPromptExecutionSettings()
@@ -89,12 +87,9 @@ namespace UseMicrosoft_SemanticKernel
             var result = await chat.GetChatMessageContentAsync(
                 """
                 How can I solve 8x + 7 = -23?
-                response me in this json format: { 'steps': [ { 'explanation': 'reason', 'output': 'result' } ], 'final_answer'': 'answer'' }
                 """,
                 settings);
 
-            //Console.WriteLine(result.ToString());
-            //return;
 
             var answer = JsonSerializer.Deserialize<MathReasoning>(result.ToString());
 
@@ -107,6 +102,15 @@ namespace UseMicrosoft_SemanticKernel
                 Console.WriteLine($"    Output: {step.Output}");
             }
         }
+
+
+
+
+
+
+
+
+
 
         
         public class MathReasoning

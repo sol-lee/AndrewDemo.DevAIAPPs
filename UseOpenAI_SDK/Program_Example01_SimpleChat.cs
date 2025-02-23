@@ -1,10 +1,7 @@
 ﻿using System;
+using System.ClientModel;
 using System.ClientModel.Primitives;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenAI.Batch;
 using OpenAI.Chat;
 
 namespace UseOpenAI_SDK
@@ -14,13 +11,16 @@ namespace UseOpenAI_SDK
         static void Example01_SimpleChat()
         {
             // https://github.com/openai/openai-dotnet/blob/main/examples/Chat/Example01_SimpleChat.cs
-            ChatClient client = new ChatClient(
-                model: "gpt-4o",
-                apiKey: OPENAI_APIKEY);
+            ChatClient client = new(
+                "gpt-4o-mini",
+                OPENAI_APIKEY);
 
-            //ChatCompletion completion = client.CompleteChat("Say 'this is a test.'");
+
             ChatCompletion completion = client.CompleteChat(
-                GetChatMsgs(),
+                [
+                    ChatMessage.CreateSystemMessage(@"you are a tester, answer me what I ask you."),
+                    ChatMessage.CreateUserMessage(@"Say: 'this is a test'.")
+                ],
                 new ChatCompletionOptions()
                 {
                     Temperature = 0.2f
@@ -28,13 +28,6 @@ namespace UseOpenAI_SDK
 
             Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
         }
-
-        static IEnumerable<ChatMessage> GetChatMsgs()
-        {
-            yield return ChatMessage.CreateSystemMessage(@"you are a tester, answer me what I ask you.");
-            yield return ChatMessage.CreateUserMessage(@"Say: 'this is a test'.");
-        }
-
 
     }
 }
