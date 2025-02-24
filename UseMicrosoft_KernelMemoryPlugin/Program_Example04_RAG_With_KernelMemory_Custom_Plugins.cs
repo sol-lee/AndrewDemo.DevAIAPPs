@@ -23,7 +23,7 @@ namespace UseMicrosoft_KernelMemoryPlugin
 
             var kernel = builder.Build();
 
-            kernel.ImportPluginFromType<Program>("custom_search");
+            kernel.ImportPluginFromType<AndrewBlogSearchPlugin>("andrew_blog_search");
 
 
             var settings = new OpenAIPromptExecutionSettings
@@ -73,43 +73,45 @@ namespace UseMicrosoft_KernelMemoryPlugin
 
 
 
-
-        [KernelFunction("Search")]
-        [Description("Search Andrew's blog for the given query.")]
-        static async Task<string> AndrewBlogSearchResultAsync(
-            [Description("The query to search for.")]   string query,
-            [Description("The index to search in.")]    int limit)
+        public class AndrewBlogSearchPlugin
         {
-            var km = new MemoryWebClient("http://127.0.0.1:9001/", KERNEL_MEMORY_APIKEY);
-            var result = await km.SearchAsync(query, index: "columns.chicken-house.net", limit: limit);
-
-            StringBuilder sb = new StringBuilder();
-            foreach (var item in result.Results)
+            [KernelFunction("Search")]
+            [Description("Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.")]
+            static async Task<string> AndrewBlogSearchResultAsync(
+                [Description("The query to search for.")] string query,
+                [Description("The index to search in.")] int limit)
             {
-                foreach (var p in item.Partitions)
+                var km = new MemoryWebClient("http://127.0.0.1:9001/", KERNEL_MEMORY_APIKEY);
+                var result = await km.SearchAsync(query, index: "columns.chicken-house.net", limit: limit);
+
+                StringBuilder sb = new StringBuilder();
+                foreach (var item in result.Results)
                 {
-                    sb.AppendLine("".PadRight(80, '='));
-                    sb.AppendLine($"# Fact:");
-                    sb.AppendLine();
-                    sb.AppendLine($" - Relevance: {p.Relevance}%");
-                    sb.AppendLine($" - Title:     {p.Tags["post-title"][0]}");
-                    sb.AppendLine($" - URL:       {p.Tags["post-url"][0]}");
+                    foreach (var p in item.Partitions)
+                    {
+                        sb.AppendLine("".PadRight(80, '='));
+                        sb.AppendLine($"# Fact:");
+                        sb.AppendLine();
+                        sb.AppendLine($" - Relevance: {p.Relevance}%");
+                        sb.AppendLine($" - Title:     {p.Tags["post-title"][0]}");
+                        sb.AppendLine($" - URL:       {p.Tags["post-url"][0]}");
 
-                    sb.AppendLine();
-                    sb.AppendLine($"```");
-                    sb.AppendLine(p.Text);
-                    sb.AppendLine($"```");
-                    sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine($"```");
+                        sb.AppendLine(p.Text);
+                        sb.AppendLine($"```");
+                        sb.AppendLine();
+                    }
                 }
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"Kernel Memory Search Results:");
+                Console.ForegroundColor = ConsoleColor.DarkGray;
+                Console.WriteLine(sb.ToString());
+                Console.ResetColor();
+
+                return sb.ToString();
             }
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"Kernel Memory Search Results:");
-            Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine(sb.ToString());
-            Console.ResetColor();
-
-            return sb.ToString();
         }
     }
 }

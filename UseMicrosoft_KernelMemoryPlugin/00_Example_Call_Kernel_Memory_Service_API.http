@@ -1,0 +1,38 @@
+﻿@name = Kernel Memory Demo
+
+###
+GET http://localhost:9001/indexes
+Accept: application/json
+Authorization: {{KernelMemory_APIKEY}}
+
+
+
+###
+POST http://localhost:9001/search
+Accept: application/json
+Authorization: {{KernelMemory_APIKEY}}
+Content-Type: application/json
+
+{
+  "index": "columns.chicken-house.net",
+  "query": "SDK design",
+  "filters": [],
+  "minRelevance": 0,
+  "limit": 0,
+  "args": {}
+}
+
+
+###
+POST http://localhost:9001/ask
+Accept: application/json
+Authorization: {{KernelMemory_APIKEY}}
+Content-Type: application/json
+
+{
+  "index": "columns.chicken-house.net",
+  "question": "SDK design",
+  "filters": [],
+  "minRelevance": 0,
+  "args": {}
+}
