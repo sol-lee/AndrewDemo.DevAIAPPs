@@ -19,7 +19,7 @@ namespace UseMicrosoft_KernelMemoryPlugin
                 .AddOpenAIChatCompletion(
                     modelId: "gpt-4o",
                     apiKey: OPENAI_APIKEY,
-                    httpClient: HttpLogger.GetHttpClient());
+                    httpClient: HttpLogger.GetHttpClient(true));
 
             var kernel = builder.Build();
 
