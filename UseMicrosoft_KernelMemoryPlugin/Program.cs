@@ -34,10 +34,16 @@ namespace UseMicrosoft_KernelMemoryPlugin
             KERNEL_MEMORY_APIKEY = config["KernelMemory:ApiKey"];
             BING_SEARCH_APIKEY = config["BingSearch:ApiKey"];
 
+            // demo: semantic kernel plugin invoke skills
+            // - basic: invoke plugin manully in code
+            // - basic: invoke plugin manully in prompt template
+            // - advanced: invoke plugin in prompt template with custom function ( via LLM inference )
+
             //await Example01_RAG_Basic_Async();
             //await Example02_RAG_With_Search_Plugins_Async();
             //await Example03_RAG_With_KernelMemory_Plugins_Async();
-            await Example04_RAG_With_KernelMemory_Custom_Plugins_Async();
+            //await Example04_RAG_With_KernelMemory_Custom_Plugins_Async();
+            await Example05_DemoFromKernelMemoryOfficalRepo();
         }
     }
 }
