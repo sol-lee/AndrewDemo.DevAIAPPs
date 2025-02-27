@@ -1,0 +1,2 @@
+## Abstraction  
+這篇文章記錄作者在 Windows 下使用 WSL2 打造 Linux 開發環境，並配合 VS Code Remote Development 與 Docker 取代 Docker Desktop，解決跨系統檔案存取效能與 GPU/CUDA 相容問題。文中舉例 Qdrant 與 GitHub Pages 等應用，示範在同台主機上執行 Linux 服務的效率。同時點出 WSL 磁碟掛載與檔案系統效能的差異，並分享 GPU 虛擬化原理，使 AI 模型等高效能任務可以在 WSL 順利運行。最後透過 VS Code Server，作者也能透過遠端模式讓 Jekyll 等工具在 Linux 同樣更順暢地執行。  

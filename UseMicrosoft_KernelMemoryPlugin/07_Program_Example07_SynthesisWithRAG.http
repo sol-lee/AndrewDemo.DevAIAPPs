@@ -1,0 +1,34 @@
+﻿@name = Kernel Memory Demo
+
+### 檢索跟 RAG 相關的 problem 生成內容
+POST http://localhost:9001/search
+Accept: application/json
+Authorization: {{KernelMemory_APIKEY}}
+Content-Type: application/json
+
+{
+  "index": "blog",
+  "query": "RAG",
+  "filters": [
+    { "synthesis": ["problem"] }
+  ],
+  "minRelevance": 0,
+  "limit": 0,
+  "args": {}
+}
+
+###
+POST http://localhost:9001/ask
+Accept: application/json
+Authorization: {{KernelMemory_APIKEY}}
+Content-Type: application/json
+
+{
+  "index": "blog",
+  "question": "我想看有哪些問題解決案例，最後需要靠 RAG 來解決的?",
+  "filters": [
+    { "synthesis": ["none"] }
+  ],
+  "minRelevance": 0,
+  "args": {}
+}

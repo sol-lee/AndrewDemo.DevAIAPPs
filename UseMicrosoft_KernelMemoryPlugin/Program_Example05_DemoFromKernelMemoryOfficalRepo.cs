@@ -11,7 +11,7 @@ namespace UseMicrosoft_KernelMemoryPlugin
 {
     public partial class Program
     {
-        static async Task Example05_DemoFromKernelMemoryOfficalRepo()
+        static async Task Example05_DemoFromKernelMemoryOfficalRepo_Async()
         {
             // https://github.com/microsoft/kernel-memory/blob/main/examples/003-dotnet-SemanticKernel-plugin/Program.cs
 

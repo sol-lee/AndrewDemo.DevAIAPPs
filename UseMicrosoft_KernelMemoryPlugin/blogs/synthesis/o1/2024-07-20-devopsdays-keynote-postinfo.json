@@ -1,0 +1,37 @@
+{
+  "Title": "從 API First 到 AI First",
+  "PublishDate": "2024-08-03",
+  "Categories": [
+    "系列文章: 架構師觀點"
+  ],
+  "Tags": [
+    "架構師觀點",
+    "技術隨筆",
+    "AI",
+    "DevOpsDays"
+  ],
+  "Url": "",
+  "Software": [
+    ".NET Core",
+    "ASP.NET Core",
+    "OpenAPI (Swagger)",
+    "Azure OpenAI",
+    "Anthropic Claude",
+    "Semantic Kernel"
+  ],
+  "Reference": [
+    "DevOpsDays Taipei 2024 Keynote",
+    "2021: 大型團隊落實 CI/CD 的挑戰 (演講簡報、共筆、心得文)",
+    "2022: DevOps 潮流下的 API First 開發策略 (演講簡報、共筆、心得文、直播錄影)",
+    "2023: 架構師也要 DevOps - 談服務模型的持續交付 (演講簡報、共筆、心得文)",
+    "API Design Workshop (2023/01)",
+    "架構師觀點 - 開發人員該如何看待 AI 帶來的改變? (2024/01)",
+    "替你的應用程式加上智慧! 談 LLM 的應用程式開發 (2024/02)",
+    "替你的知識庫加上智慧! 談 RAG 的檢索與應用 (2024/03)",
+    "Generative AI 年會 2024/05 (零售業的 AI 產業應用)",
+    "RemiToffoli - Building LLM-powered products — Part 2",
+    "OpenAI 官方說明 - Function Calling",
+    "Anthropic Claude 文檔 - Tool Use",
+    "Google Cloud - 檢索增強生成 (RAG) 介紹"
+  ]
+}

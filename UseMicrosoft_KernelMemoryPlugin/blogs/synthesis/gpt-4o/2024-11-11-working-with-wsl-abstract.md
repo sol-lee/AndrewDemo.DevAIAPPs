@@ -1,0 +1,2 @@
+## Abstraction
+這篇文章記錄了作者將開發環境轉移到 WSL（Windows Subsystem for Linux）和 VSCode（Visual Studio Code）的經驗，並詳細說明了使用這套環境的一些技術挑戰和解決方案。由於工作需求，作者需要在 Linux 環境中工作，以應對例如 Docker、GPU 以及開發工具整合等問題。文章探討了幾個主要問題，如 Docker 在 Windows 上的性能問題、IO 效能低落及 CUDA 支援等，並分享了改進工作流的方法，包括直接使用 WSL 掛載實體磁碟、提升整體效能以及在 WSL 中直接運行 Windows 應用等技術細節。文章中也介紹了怎樣在 WSL 中使用 VSCode 的 Remote Development 功能，讓開發效率不因平台差異而受影響，並且能充分利用 Linux 的開發資源。作者最終選擇了一些軟硬體升級，以優化自己的多系統開發環境。

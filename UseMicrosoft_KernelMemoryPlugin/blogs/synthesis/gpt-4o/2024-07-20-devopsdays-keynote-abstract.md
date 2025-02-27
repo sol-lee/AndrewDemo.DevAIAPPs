@@ -1,0 +1,2 @@
+## Abstraction
+這篇文章是由 DevOpsDays Taipei 2024 上的 Keynote 演講內容的延伸，討論如何從 "API First" 開始，進一步到 "AI First" 的應用轉變。文章強調軟體開發基礎對於迎接 AI 主導時代的重要性，並指出精確的 API 設計及良好的 AI 互動體驗將是未來競爭的關鍵。作者分享了如何將生成式 AI 整合至現有架構以提升使用者體驗的實例，並討論 Prompt Engineering、Copilot 設計與基礎元件的重要性。同時，文章也探討了在零售業不同銷售場景下，AI 如何成為銷售助力的潛力與挑戰。

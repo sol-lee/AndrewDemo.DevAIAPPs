@@ -1,0 +1,27 @@
+{
+  "Title": "替你的應用程式加上智慧! 談 RAG 的檢索與應用",
+  "PublishDate": "2024-03-25",
+  "Categories": [
+    "系列文章: 架構師觀點"
+  ],
+  "Tags": [
+    "架構師觀點",
+    "技術隨筆",
+    "AI",
+    "Semantic Kernel"
+  ],
+  "Url": "https://columns.chicken-house.net/2024/03/25/rag-integration/",
+  "Software": [
+    "Chat GPT",
+    "Azure OpenAI",
+    "Microsoft Semantic Kernel",
+    "Kernel Memory"
+  ],
+  "Reference": [
+    "https://www.sciencedirect.com/topics/computer-science/embedding-space",
+    "https://ani.gamer.com.tw/animeVideo.php?sn=11544",
+    "https://github.com/microsoft/generative-ai-for-beginners",
+    "https://vinay-bhupalam.medium.com/personalized-recommendation-systems-c6a2159445b9",
+    "https://blog.darkthread.net/blog/parse-front-matter-w-csharp/"
+  ]
+}

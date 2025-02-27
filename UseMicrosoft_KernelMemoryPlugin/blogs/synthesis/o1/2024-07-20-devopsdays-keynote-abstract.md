@@ -1,0 +1,2 @@
+## Abstraction  
+本篇文章以「從 API First 到 AI First」為主軸，探討軟體開發在 AI 時代的應用與設計轉變。作者以 AI 導購、滿意度偵測、Copilot 模式及 RAG 檢索等範例，展現 LLM 與 API 結合後的高效益。文章強調優良 API 與自然語言解析相輔相成，能提升開發與佈署效率。透過狀態機思維與 Function Calling、Prompt Engineering 等功夫，開發者可在助理型、交互型與 Agent 等情境運用 AI。文中亦提及零售業如何透過 AI 提升銷售體驗，顯示未來多元場景皆具潛力。作者最後強調，AI 技術成熟後，從服務架構到部署管線都需升級，才能維持競爭力。

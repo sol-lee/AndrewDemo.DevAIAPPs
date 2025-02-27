@@ -43,8 +43,11 @@ namespace UseMicrosoft_KernelMemoryPlugin
             //await Example02_RAG_With_Search_Plugins_Async();
             //await Example03_RAG_With_KernelMemory_Plugins_Async();
             //await Example04_RAG_With_KernelMemory_Custom_Plugins_Async();
-            //await Example05_DemoFromKernelMemoryOfficalRepo();
-            await Example06_MultiplePluginsDemo_Async();
+            //await Example05_DemoFromKernelMemoryOfficalRepo_Async();
+            //await Example06_MultiplePluginsDemo_Async();
+
+            //await Example07_IngestionWithSynthesis_Async();
+            await Example07_RAGWithSynthesis_Async();
         }
     }
 }

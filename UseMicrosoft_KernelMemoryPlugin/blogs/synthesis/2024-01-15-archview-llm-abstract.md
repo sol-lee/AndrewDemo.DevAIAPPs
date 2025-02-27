@@ -1,0 +1,2 @@
+## Abstraction
+本文探討 AI 與大規模語言模型對軟體開發的衝擊，以及開發者該如何面對未來的轉型。作者以自身範例「安德魯小舖 GPTs」展示如何利用 OpenAI GPTs 與自家 API 實作出可回答顧客需求的購物體驗，強調因應 AI 世代需重視 API First、領域設計與軟體架構思維。文章也深度分析 Microsoft 在 AI 產品與生態系上的布局，包含 Azure OpenAI、Copilot 與 Semantic Kernel。文末提供對架構師與開發者的建議，認為深入掌握核心領域與正確 API 設計，可讓團隊更有效應對未來技術潮流。後續可善用 Prompt 與向量資料庫，提升開發效率與應用價值。

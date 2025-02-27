@@ -13,9 +13,13 @@ namespace UseMicrosoft_KernelMemoryPlugin
     {
         public static HttpClient GetHttpClient(bool log = false)
         {
-            return log
+            var hc = log
                 ? new HttpClient(new HttpLogger(new HttpClientHandler()))
                 : new HttpClient();
+
+            hc.Timeout = TimeSpan.FromMinutes(5);
+
+            return hc;
         }
 
         public HttpLogger(HttpMessageHandler innerHandler)
