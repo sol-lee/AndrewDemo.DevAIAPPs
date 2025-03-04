@@ -39,32 +39,43 @@ namespace UseMicrosoft_KernelMemoryPlugin
             };
 
 
+            // 根據不同的問法，Plugin 有能力調整不同的檢索條件, 挑出最適當的內容來進行 RAG
             string question =
-                //"摘要安德魯寫過的 RAG 主題，它的核心概念是甚麼?";
-                "安德魯說明過那些跟 WSL 相關的解題案例?";
+                //"摘要安德魯寫過的 RAG 主題，它的核心概念是甚麼?";     // 意圖: Abstract
+                //"安德魯說明過那些跟 WSL 相關的解題案例?";            // 意圖: Problem
+                //"安德魯說明過那些跟 WSL 相關的常見問題?";             // 意圖: Question
+                "我想知道安德魯寫過那些關於 WSL 的內容，我要看他的原文片段，請勿摘要或是彙整, 謝謝!"; // 意圖: None
 
+            /*
+
+                <message role="user">
+                # Facts
+                {{andrew_blog_search.search query=$question limit="5" synthesis="none"}}
+                {{andrew_blog_search.search query=$question limit="5" synthesis="abstract"}}
+                {{andrew_blog_search.search query=$question limit="5" synthesis="question"}}
+                {{andrew_blog_search.search query=$question limit="5" synthesis="problem"}}
+                </message>
+
+             */
             Console.WriteLine(await kernel.InvokePromptAsync<string>(
                 """
                 <message role="system">
-
-                你的任務是協助使用者找尋相關的資訊，並且依據 search result 為基礎，回覆使用者提出的 Question。
+                你的任務是協助使用者找尋相關的資訊，並且依據 Search Result: Facts 為基礎，回覆使用者提出的 Question。
                 若你無法回答請直接回答 "我不知道!"。
 
                 回覆問題時，請在最後面附上你參考的資料來源，要包含內容與網址。
                 附註的格式如下:
-
                 --
                 # 參考資料
                 - (1), [參考標題](參考網址): 參考內容
                 - (2), [參考標題](參考網址): 參考內容
                 </message>
                 <message role="user">
-                
                 # Question
                 {{$question}}
-
+                </message>
+                <message role="user">
                 # Answer
-                
                 </message>
                 """,
                 new(settings)
@@ -77,19 +88,21 @@ namespace UseMicrosoft_KernelMemoryPlugin
         {
             public enum SynthesisTypeEnum
             {
-                [Description("abstract")]
+                [Description("內容合成: Abstract, 摘要資訊")]
                 Abstract,
-                [Description("question")]
+                [Description("內容合成: Question, 將敘述內容摘要成問答形式 (FAQ), 有利於針對問題(Question)或是答案的精準檢索要求")]
                 Question,
-                [Description("problem")]
-                Problem
+                [Description("內容合成: Problem Solving, 將敘述內容摘要成問題解決的形式，歸納成問題(Problem),原因(RootCause),解決方案(Resolution),案例(Example)的形式，有利於針對問題(Problem)的檢索，或是針對特定解決方案(Resolution)的檢索要求。")]
+                Problem,
+                [Description("內容合成: None, 沒有經過合成處理，直接檢索原始內容時適用")]
+                None,
             }
 
-            [KernelFunction("Search")]
+            [KernelFunction("search")]
             [Description("Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.")]
             static async Task<string> AndrewBlogSearchResultAsync(
                 [Description("The query to search for.")] string query,
-                [Description("Search from which synthesis source? abstract | question | problem")]SynthesisTypeEnum synthesis,
+                [Description("Search from which synthesis source? abstract | question | problem | none")]SynthesisTypeEnum synthesis,
                 [Description("The index to search in.")] int limit)
             {
                 var km = new MemoryWebClient("http://127.0.0.1:9001/", KERNEL_MEMORY_APIKEY);
@@ -105,11 +118,28 @@ namespace UseMicrosoft_KernelMemoryPlugin
                     foreach (var p in item.Partitions)
                     {
                         sb.AppendLine("".PadRight(80, '='));
-                        sb.AppendLine($"# Fact:");
+                        sb.AppendLine($"## Fact:");
                         sb.AppendLine();
                         sb.AppendLine($" - Relevance: {p.Relevance}%");
                         sb.AppendLine($" - Title:     {p.Tags["post-title"][0]}");
                         sb.AppendLine($" - URL:       {p.Tags["post-url"][0]}");
+
+                        switch (synthesis)
+                        {
+                            case SynthesisTypeEnum.Abstract:
+                                sb.AppendLine($" - Format:    Abstract");
+                                break;
+                            case SynthesisTypeEnum.Question:
+                                sb.AppendLine($" - Format:    FAQ");
+                                break;
+                            case SynthesisTypeEnum.Problem:
+                                sb.AppendLine($" - Format:    Problem Solving");
+                                break;
+                            case SynthesisTypeEnum.None:
+                            default:
+                                sb.AppendLine($" - Format:    Original Content");
+                                break;
+                        }
 
                         sb.AppendLine();
                         sb.AppendLine($"```");

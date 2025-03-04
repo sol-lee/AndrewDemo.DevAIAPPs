@@ -10,6 +10,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseMicrosoft_KernelMemoryPlugin", "UseMicrosoft_KernelMemoryPlugin\UseMicrosoft_KernelMemoryPlugin.csproj", "{9E7BEF7B-E3CF-4D4B-934E-37C750040F29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2898B24F-BE19-4CA8-9C9C-E56EDFF0FBC2}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yaml = docker-compose.yaml
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
