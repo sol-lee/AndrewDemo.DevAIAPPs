@@ -36,10 +36,12 @@ namespace UseMicrosoft_SemanticKernel
             // 你能明確在 template 呼叫 plugin, 這時 semantic kernel 會直接在本地端幫你處理掉 (不用透過 LLM)
             // 但是你仍然保有 function calling 讓 AI 幫你計畫執行方式的彈性
             Console.WriteLine(await kernel.InvokePromptAsync<string>(
+                //"""
+                //<message role="user">
+                //My current location is {{WeatherPlugins.GetCurrentLocation}}
+                //</message>
+                //""" +
                 """
-                <message role="user">
-                My current location is {{WeatherPlugins.GetCurrentLocation}}
-                </message>
                 <message role="user">
                 What is the weather like today?
                 </message>

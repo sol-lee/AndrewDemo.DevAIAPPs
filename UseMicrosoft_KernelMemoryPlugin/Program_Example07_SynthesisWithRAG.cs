@@ -48,13 +48,7 @@ namespace UseMicrosoft_KernelMemoryPlugin
 
             /*
 
-                <message role="user">
-                # Facts
-                {{andrew_blog_search.search query=$question limit="5" synthesis="none"}}
-                {{andrew_blog_search.search query=$question limit="5" synthesis="abstract"}}
-                {{andrew_blog_search.search query=$question limit="5" synthesis="question"}}
-                {{andrew_blog_search.search query=$question limit="5" synthesis="problem"}}
-                </message>
+
 
              */
             Console.WriteLine(await kernel.InvokePromptAsync<string>(
@@ -74,6 +68,17 @@ namespace UseMicrosoft_KernelMemoryPlugin
                 # Question
                 {{$question}}
                 </message>
+                """ +
+                //"""
+                //<message role="user">
+                //# Facts
+                //{{andrew_blog_search.search query=$question limit="5" synthesis="none"}}
+                //{{andrew_blog_search.search query=$question limit="5" synthesis="abstract"}}
+                //{{andrew_blog_search.search query=$question limit="5" synthesis="question"}}
+                //{{andrew_blog_search.search query=$question limit="5" synthesis="problem"}}
+                //</message>
+                //""" +
+                """
                 <message role="user">
                 # Answer
                 </message>
