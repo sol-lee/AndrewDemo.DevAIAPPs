@@ -1,26 +1,14 @@
-{
-  "title": "[架構師觀點] 開發人員該如何看待 AI 帶來的改變?",
-  "publish-date": "2023-01-20",
-  "categories": [
-    "系列文章: 架構師觀點"
-  ],
-  "tags": [
-    "架構師觀點",
-    "技術隨筆"
-  ],
-  "url": "https://www.facebook.com/andrew.blog.0928/posts/pfbid032HE2xDn8UmV818B451JS7d8gHFWiFbGbvTPfZfFKJWAJLLRF8bTEsHuaCSUvvAaDl",
-  "software": [
-    "OpenAI",
-    "GPTs",
-    ".NET",
-    "Azure App Service"
-  ],
-  "reference": [
-    "https://andrewshopoauthdemo.azurewebsites.net/swagger/index.html",
-    "https://github.com/andrew0928/AndrewDemo.NetConf2023",
-    "https://platform.openai.com/docs/guides/function-calling",
-    "https://learn.microsoft.com/en-us/semantic-kernel/overview/",
-    "https://www.youtube.com/watch?v=JhCl-GeT4jw",
-    "https://twitter.com/CRUD_Machine/status/1750344703567110393"
-  ]
-}
+## 段落1, 安德魯小舖 GPTs - Demo
+本段落介紹作者開發的"安德魯小舖 GPTs"應用，這是一項試驗性的PoC（Proof of Concept）專案，旨在測試OpenAI的GPTs服務在購物流程中的應用。透過自訂的API，GPTs能模擬店員角色，協助用戶完成線上購物。作者分享了從商品存取、購物車管理到結帳整個過程中的體驗，並指出此過程中使用AI所帶來的思維轉變與技術整合挑戰。同時，強調了API設計的重要性，未來AI的能力會對傳統解決方案產生重大影響。
+
+## 段落2, 軟體開發的改變
+在AI技術成熟的背景下，作者探討了未來軟體開發的潛在變革方向。特別是LLM（大型語言模型）的強大自然語言理解能力，改變了用戶與應用之間的互動，逐漸降低了傳統UI界面的重要性。作者相信LLM將成為未來軟體架構的重要組成部分，讓AI在應用程式中扮演中控中心的角色，有效降低UX設計的複雜性。對於API設計，未來需更加強化其具備的合理性以迎接AI帶來的新挑戰。
+
+## 段落3, 看懂 Microsoft 的 AI 技術布局
+Microsoft在AI領域，透過對OpenAI的戰略性投資，以及推動Azure Open AI Service和Copilot產品線，構建了強大且獨特的市場優勢。文章指出，Microsoft透過創建AI系統基礎架構、策略性把LLM集成到OS和應用程式生態中，市場將迎來“AI PC”的新時代。這種精心佈局，顯示出AI技術長遠布局和應用場景融合的重要性，使得Microsoft的技術生態具備更強的競爭力。
+
+## 段落4, 架構師、資深人員該怎麼看待 AI ?
+身處技術前沿的架構師及資深開發者需預見AI帶來的市場及技術變革，領導他們的團隊使其系統逐步改進以適應AI世代。作者建議在API設計上進一步抽象與合理化，並鼓勵採用LLM解決意圖導向的問題，而非傳統計算運算。角色需要廣泛涉及維持系統的擴展性和集成新的AI能力的議題，以面對持續的技術演化。
+
+## 段落5, 開發人員該怎麼看待 AI ?
+開發者需時刻更新自身技術，以應對AI工具帶來的效率提升與技術挑戰。在API設計與工程實踐中，強調精確與合理化設計，使用AI增強編程、協作和流程，以便更好地在當前及未來的技術圈中轉變與自我提升。隨著AI繼續演化，開發人員應該積極學習並掌握新開發框架和技術，如Semantic Kernel，進一步加強其專業技能。

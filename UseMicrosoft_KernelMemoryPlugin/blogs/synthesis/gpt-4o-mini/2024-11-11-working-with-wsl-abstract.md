@@ -1,4 +1,2 @@
 ## Abstraction
-這篇文章記錄了筆者重整開發環境的過程，將其重建為基於 WSL (Windows Subsystem for Linux) 和 VS Code 的 Linux 開發環境。筆者討論了重新打造工作環境的動機，包括希望拋開 Docker Desktop、改善 I/O 效能、使用 GPU/CUDA 應用程式及在 Windows 和 Linux 之間無縫協作。文章深入探討了如何解決在 WSL 中面臨的各種技術挑戰，並提供了具體的案例，說明在 WSL 下運行 Docker 和使用 Visual Studio Code 創建網站的過程。最終，筆者分享了使用 WSL 整合 GPU 支持的能力，使得 AI 應用變得更加容易和高效。
-
----
+這篇文章詳細分享了作者將其開發環境從 Windows 搬遷到 WSL（Windows Subsystem for Linux）和 VSCode（Visual Studio Code）的過程，涵蓋了其背後的動機與挑戰。作者主要希望在 Linux 環境下執行應用程式，避開 Docker Desktop 的授權問題，並提高 Docker 持久化數據卷的 I/O 性能，特別是利用 NVIDIA GPU 和 CUDA 的支持進行 AI 應用的運行。同時，文章討論了使用 WSL 和 VSCode 的架構優勢，如何解決跨系統的檔案系統效能問題，以及利用 Microsoft 的工具進行高效的開發和調試。最終，透過在 WSL 中整合工具和環境，作者成功打造了一個更流暢、高效的開發工作流。

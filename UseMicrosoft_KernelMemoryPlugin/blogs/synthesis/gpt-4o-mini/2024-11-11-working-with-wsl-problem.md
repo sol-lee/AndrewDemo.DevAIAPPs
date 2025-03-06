@@ -1,15 +1,17 @@
-## Abstraction
-這篇文章記錄了筆者重整開發環境的過程，將其重建為基於 WSL (Windows Subsystem for Linux) 和 VS Code 的 Linux 開發環境。筆者討論了重新打造工作環境的動機，包括希望拋開 Docker Desktop、改善 I/O 效能、使用 GPU/CUDA 應用程式及在 Windows 和 Linux 之間無縫協作。文章深入探討了如何解決在 WSL 中面臨的各種技術挑戰，並提供了具體的案例，說明在 WSL 下運行 Docker 和使用 Visual Studio Code 創建網站的過程。最終，筆者分享了使用 WSL 整合 GPU 支持的能力，使得 AI 應用變得更加容易和高效。
+Case 1: WSL 環境下的 Docker I/O 效能問題
+- Problem: 在 Windows 下的 Docker 卷掛載性能低下，影響 I/O 效能。
+- RootCause: 跨系統檔案操作使用 9P 協定，效率偏低。
+- Resolution: 將卷直接掛載到 WSL 的 EXT4 檔案系統中以避開效率瓶頸。
+- Example: 在測試 Qdrant 資料庫時，這樣的調整將啟動時間從 38 秒降至約 1.5 秒。
 
----
-## 段落1, 替換工作環境的動機
-筆者解釋了他決定重整開發環境的動機，主要是因為需要在 Docker 上運行 AI 相關的應用。為了實現更好的運算效率，筆者投入時間學習 WSL 的背景知識，並逐步簡化 Docker 環境，最終達成在 WSL 中順利運行 GPU 資源的目標。此過程中，筆者意識到 Windows 和 Linux 之間的整合改善了開發流程，使開發工作變得更加高效。
+Case 2: VSCode 在 WSL 的遠端開發模式應用
+- Problem: 在多操作系統間開發需要應對不同系統的文件和執行環境。
+- RootCause: 跨系統的操作繁瑣並且效能受到影響。
+- Resolution: 利用 VSCode 的 Remote Development 模式，可以在 Linux 系統設立完整開發環境。
+- Example: 在 WSL 執行 git 操作及編譯測試，顛覆了以往 Windows 和 Linux 分界的限制。
 
-## 段落2, 案例: 容器化的向量資料庫 - Qdrant
-在這一段中，筆者詳細探討了 Docker 在 Windows 環境下的 I/O 效能問題，特別是使用 Qdrant 向量資料庫的困難。筆者說明了 WSL 的檔案系統架構，以及在不同場景下存取檔案的效能差異，並提供了明確的數據支持，顯示在 WSL 內運行本地 Docker 環境的明顯效能提升。這段經驗讓筆者理解到不合理的存取路徑會導致顯著的效能降低，從而強調了選對正確的磁碟掛載方式的重要性。
-
-## 段落3, GitHub Pages with Visual Studio Code
-在這一段，筆者介紹了如何在 WSL 下使用 VS Code 進行開發，特別是在 GitHub Pages 上構建靜態網站的操作。透過整合 WSL 和 VS Code，筆者實現了流暢的開發體驗，能夠輕鬆地在 Linux 上編寫和測試代碼，並使用 VS Code 的優秀功能。這為開發工作帶來了便利，也解決了跨作業系統的溝通問題。
-
-## 段落4, GPU (CUDA) Application
-最後一段落中，筆者說明了在 WSL 環境下使用 GPU 運行 AI 應用的簡單步驟，尤其是安裝 NVIDIA 驅動程式和設定 Docker 標準以支持 GPU。他分享了在 WSL 中運行 ollama 的成功經驗，並展示了如何利用 GPU 提升計算效能，讓 LLM 模型能夠在本機環境中流暢運行。筆者的經歷顯示，WSL 在現代開發環境中的潛力，特別是在 AI 應用的支持上。
+Case 3: GPU 資源在 WSL 內的利用
+- Problem: 需要在 WSL 中運行 CUDA 加速的應用程式。
+- RootCause: WSL 中缺少原生的 GPU 驅動支持。
+- Resolution: 透過正確安裝 NVDIA GPU 并使用 NVDIA container toolkit 可解決此問題。
+- Example: 使用 docker 中的 Ollama 應用，通過 WSL 可以有效地利用 GPU 資源來執行 LLMS 模型。
