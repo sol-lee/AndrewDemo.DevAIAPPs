@@ -2,3 +2,9 @@
 {"method":"notifications/initialized","jsonrpc":"2.0"}
 {"method":"resources/list","params":{},"jsonrpc":"2.0","id":1}
 {"method":"tools/list","params":{},"jsonrpc":"2.0","id":2}
+
+
+
+
+
+search andrew's blog, tell me all about "SDK design" concepts that andrew says...

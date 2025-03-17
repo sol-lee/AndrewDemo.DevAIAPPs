@@ -1,12 +1,36 @@
 ﻿using MCPSharp;
+using MCPSharp.Model;
 using Microsoft.Extensions.Configuration;
 using Microsoft.KernelMemory;
 using Microsoft.SemanticKernel;
 using System.ComponentModel;
 using System.Text;
 
+
+//using McpDotNet;
+//using McpDotNet.Server;
+//using Microsoft.Extensions.Hosting;
+//using System.ComponentModel;
+
+
+
 namespace KernelMemory_MCPServer
 {
+
+    //[McpToolType()]
+    public class HelloAndrewPlugin
+    {
+        [McpTool("hello", "Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
+        //[KernelFunction("hello")]
+        //[Description("Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
+        public string HelloAndrew()
+        {
+            return "Hello Andrew! How can I help you today?";
+        }
+    }
+
+
+
     internal class Program
     {
         private static string OPENAI_APIKEY;
@@ -24,40 +48,39 @@ namespace KernelMemory_MCPServer
             KERNEL_MEMORY_APIKEY = config["KernelMemory:ApiKey"];
             BING_SEARCH_APIKEY = config["BingSearch:ApiKey"];
 
-            //MCPServer.Register<CustomSynthesisSearchPlugin>();
+            MCPServer.Register<CustomSynthesisSearchPlugin>();
             //MCPServer.Register<HelloAndrewPlugin>();
-            MCPServer.AddToolHandler(
-                new MCPSharp.Model.Tool()
-                {
-                    Name = "search",
-                    Description = "Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.",
-                },
-                () => {
-                    return "Hello Andrew! How can I help you today?"; 
-                });
+            //MCPServer.AddToolHandler(
+            //    new MCPSharp.Model.Tool()
+            //    {
+            //        Name = "search",
+            //        Description = "Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.",
+            //    },
+            //    () => {
+            //        return "Hello Andrew! How can I help you today?"; 
+            //    });
+            await MCPSharp.MCPServer.StartAsync("DemoServer", "0.1.0");
 
-            await MCPSharp.MCPServer.StartAsync("demo", "0.1.0");
+
+            //var builder = Host.CreateEmptyApplicationBuilder(null);
+            //builder.Services
+            //    .AddMcpServer()
+            //    .WithStdioServerTransport()
+            //    .WithTools();
+            //await builder.Build().RunAsync();
+
 
             while (true) await Task.Delay(300);
         }
 
 
-        public class HelloAndrewPlugin
-        {
-            [McpTool("hello", "Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
-            //[KernelFunction("hello")]
-            //[Description("Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
-            static async Task<string> HelloAndrewAsync()
-            {
-                return "Hello Andrew! How can I help you today?";
-            }
-        }
 
 
 
 
 
 
+        
         public class CustomSynthesisSearchPlugin
         {
             public enum SynthesisTypeEnum
@@ -72,27 +95,29 @@ namespace KernelMemory_MCPServer
                 None,
             }
 
-            //[McpTool("search", "Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.")]
-            [KernelFunction("search")]
-            [Description("Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.")]
-            static async Task<string> AndrewBlogSearchResultAsync(
-                [Description("The query to search for.")] 
-                //[McpParameter(true, "The query to search for.")]
+            [McpTool("search", "Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.")]
+            //[KernelFunction("search")]
+            //[Description("Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.")]
+            public async Task<string> AndrewBlogSearchResultAsync(
+                //[Description("The query to search for.")] 
+                [McpParameter(true, "The query to search for.")]
                 string query,
                 
-                [Description("Search from which synthesis source? abstract | question | problem | none")]
-                //[McpParameter(false, "Search from which synthesis source? abstract | question | problem | none")]
-                SynthesisTypeEnum synthesis,
+                //[Description("Search from which synthesis source? abstract | question | problem | none")]
+                //[McpParameter(true, "Search from which synthesis source? abstract | question | problem | none")]
+                //SynthesisTypeEnum synthesis = SynthesisTypeEnum.None,
                 
-                [Description("The index to search in.")]
-                //[McpParameter(false, "The index to search in.")] 
-                int limit)
+                //[Description("The index to search in.")]
+                [McpParameter(true, "The index to search in.")] 
+                int limit = 5)
             {
+                var synthesis = SynthesisTypeEnum.None;
+
                 var km = new MemoryWebClient("http://127.0.0.1:9001/", KERNEL_MEMORY_APIKEY);
                 var result = await km.SearchAsync(
                     query,
                     index: "blog",
-                    filter: (new MemoryFilter()).ByTag("synthesis", synthesis.ToString().ToLower()),
+                    //filter: (new MemoryFilter()).ByTag("synthesis", synthesis.ToString().ToLower()),
                     limit: limit);
 
                 StringBuilder sb = new StringBuilder();
@@ -141,8 +166,8 @@ namespace KernelMemory_MCPServer
                 return sb.ToString();
             }
         }
-
     }
+
 
 
 
