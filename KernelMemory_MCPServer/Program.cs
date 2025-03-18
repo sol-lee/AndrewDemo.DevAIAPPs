@@ -7,17 +7,9 @@ using System.ComponentModel;
 using System.Text;
 
 
-//using McpDotNet;
-//using McpDotNet.Server;
-//using Microsoft.Extensions.Hosting;
-//using System.ComponentModel;
-
-
-
 namespace KernelMemory_MCPServer
 {
 
-    //[McpToolType()]
     public class HelloAndrewPlugin
     {
         [McpTool("hello", "Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
@@ -49,28 +41,7 @@ namespace KernelMemory_MCPServer
             BING_SEARCH_APIKEY = config["BingSearch:ApiKey"];
 
             MCPServer.Register<CustomSynthesisSearchPlugin>();
-            //MCPServer.Register<HelloAndrewPlugin>();
-            //MCPServer.AddToolHandler(
-            //    new MCPSharp.Model.Tool()
-            //    {
-            //        Name = "search",
-            //        Description = "Search Andrew's blog for the given query. Andrew is Microsoft MVP, good in .NET and AI application development.",
-            //    },
-            //    () => {
-            //        return "Hello Andrew! How can I help you today?"; 
-            //    });
             await MCPSharp.MCPServer.StartAsync("DemoServer", "0.1.0");
-
-
-            //var builder = Host.CreateEmptyApplicationBuilder(null);
-            //builder.Services
-            //    .AddMcpServer()
-            //    .WithStdioServerTransport()
-            //    .WithTools();
-            //await builder.Build().RunAsync();
-
-
-            while (true) await Task.Delay(300);
         }
 
 
@@ -109,7 +80,7 @@ namespace KernelMemory_MCPServer
                 
                 //[Description("The index to search in.")]
                 [McpParameter(true, "The index to search in.")] 
-                int limit = 5)
+                int limit = 3)
             {
                 var synthesis = SynthesisTypeEnum.None;
 

@@ -174,8 +174,8 @@ namespace UseMicrosoft_KernelMemoryPlugin
             var builder = Kernel.CreateBuilder();
             builder
                 .AddOpenAIChatCompletion(
-                    modelId: "gpt-4o",
-                    //modelId: "o1",
+                    //modelId: "gpt-4o",
+                    modelId: "o1",
                     apiKey: OPENAI_APIKEY,
                     httpClient: HttpLogger.GetHttpClient(false));
 
@@ -378,36 +378,42 @@ namespace UseMicrosoft_KernelMemoryPlugin
                 // upload article
                 Console.Write("#");
                 tags["synthesis"] = new List<string>() { "none" };
-                await memory.ImportTextAsync(
-                    File.ReadAllText(file),
-                    $"{docid}",
-                    tags,
-                    "blog");
+                await memory.ImportDocumentAsync(
+                    file,
+                    documentId: $"{docid}",
+                    tags:  tags,
+                    index: "blog");
 
                 // upload synthesis content
                 Console.Write("#");
                 tags["synthesis"] = new List<string>() { "abstract" };
-                await memory.ImportTextAsync(
-                    abstract_part + "\n" + paragraph_part,
-                    $"{docid}-abstract",
-                    tags,
-                    "blog");
+                await memory.ImportDocumentAsync(
+                    new Document(
+                        id: $"{docid}-abstract",
+                        tags: tags,
+                        filePaths: new[]
+                        {
+                            Path.Combine(synthesis_folder, $"{filename}-abstract.md"),
+                            Path.Combine(synthesis_folder, $"{filename}-paragraph.md")
+                        }),
+                    index: "blog");
+
 
                 Console.Write("#");
                 tags["synthesis"] = new List<string>() { "question" };
-                await memory.ImportTextAsync(
-                    question_part,
-                    $"{docid}-question",
-                    tags,
-                    "blog");
+                await memory.ImportDocumentAsync(
+                    Path.Combine(synthesis_folder, $"{filename}-question.md"),
+                    documentId: $"{docid}-question",
+                    tags: tags,
+                    index: "blog");
 
                 Console.Write("#");
                 tags["synthesis"] = new List<string>() { "problem" };
-                await memory.ImportTextAsync(
-                    problem_part,
-                    $"{docid}-problem",
-                    tags,
-                    "blog");
+                await memory.ImportDocumentAsync(
+                    Path.Combine(synthesis_folder, $"{filename}-problem.md"),
+                    documentId: $"{docid}-problem",
+                    tags: tags,
+                    index: "blog");
 
                 Console.WriteLine("Done.");
                 Console.ResetColor();
