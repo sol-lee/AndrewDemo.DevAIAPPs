@@ -7,4 +7,5 @@
 
 
 
-search andrew's blog, tell me all about "SDK design" concepts that andrew says...
+search andrew's blog, tell me about "SDK design" concepts that andrew says...
+in traditional chinese, and give me the source URL that you referenced from.

@@ -10,16 +10,16 @@ using System.Text;
 namespace KernelMemory_MCPServer
 {
 
-    public class HelloAndrewPlugin
-    {
-        [McpTool("hello", "Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
-        //[KernelFunction("hello")]
-        //[Description("Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
-        public string HelloAndrew()
-        {
-            return "Hello Andrew! How can I help you today?";
-        }
-    }
+    //public class HelloAndrewPlugin
+    //{
+    //    [McpTool("hello", "Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
+    //    //[KernelFunction("hello")]
+    //    //[Description("Say hello to Andrew. Andrew is Microsoft MVP, good in .NET and AI application development.")]
+    //    public string HelloAndrew()
+    //    {
+    //        return "Hello Andrew! How can I help you today?";
+    //    }
+    //}
 
 
 

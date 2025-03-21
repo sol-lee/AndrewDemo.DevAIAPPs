@@ -8,7 +8,7 @@ namespace UseMicrosoft_SemanticKernel
         private static string OPENAI_APIKEY = null;
         private static string OPENAI_ORGID = null;
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             IConfigurationRoot config = new ConfigurationBuilder()
                 .AddUserSecrets<Program>()
@@ -17,12 +17,16 @@ namespace UseMicrosoft_SemanticKernel
             OPENAI_APIKEY = config["OpenAI:ApiKey"];
             OPENAI_ORGID = config["OpenAI:OrgId"];
 
-            //Example01_SimpleChatAsync().Wait();            
-            //Example03_FunctionCalling_ChatCompletion_Async().Wait();
-            //Example03_FunctionCalling_PromptTemplate_Async().Wait();
-            Example03_FunctionCalling_PromptTemplate2_Async().Wait();
-            //Example06_StructuredOutputs_JsonObject_Async().Wait();
-            //Example06_StructuredOutputs_JsonSchema_Async().Wait();
+            //await Demo02_ExtractAddress_Async();
+            await Demo03_ScheduleEvent_Async();
+
+
+            //await Example01_SimpleChatAsync();            
+            //await Example03_FunctionCalling_ChatCompletion_Async();
+            //await Example03_FunctionCalling_PromptTemplate_Async();
+            //await Example03_FunctionCalling_PromptTemplate2_Async();
+            //await Example06_StructuredOutputs_JsonObject_Async();
+            //await Example06_StructuredOutputs_JsonSchema_Async();
         }
     }
 

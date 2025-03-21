@@ -1,6 +1,6 @@
 services:
   km:
-    image: kernelmemory/service
+    image: kernelmemory/service:0.96.250120.1
     restart: always
     depends_on:
       - qdrant

@@ -1,0 +1,91 @@
+@name = Simple Chat
+
+
+
+
+
+###
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+  "model": "gpt-4o-mini",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract the address from the following text, Response using the following json format: { 'street_address'?: string, 'city'?: string, 'postal_code'?: string, 'country'?: string }"
+    },
+    {
+      "role": "user",
+      "content": "'- For the tea shop in Paris there is a good one on rue montorgueil.\n- You remember the number?\n- 90, I guess.'"
+    }
+  ],
+  "temperature": 0.2,
+  "response_format": { "type": "json_object" }
+}
+
+
+
+
+
+
+###
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+  "model": "gpt-4o-mini",
+  "messages": [
+    {
+      "role": "system",
+      "content": "Extract the address from the following text"
+    },
+    {
+      "role": "user",
+      "content": "'- For the tea shop in Paris there is a good one on rue montorgueil.\n- You remember the number?\n- 90, I guess.'"
+    }
+  ],
+  "temperature": 0.2,
+  "response_format":
+  {
+    "type": "json_schema",
+    "json_schema":
+    {
+      "name": "address_format",
+      "schema":
+      {
+        "type": "object",
+        "properties":
+        {
+          "street_address":
+          {
+            "type": "string",
+            "description": "Number and name of the street address."
+          },
+          "city":
+          {
+            "type": "string",
+            "description": "Name of the city."
+          },
+          "postal_code":
+          {
+            "type": "string",
+            "description": "Postal or ZIP code."
+          },
+          "country":
+          {
+            "type": "string",
+            "description": "Name of the country."
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      }
+    }
+  }
+}
+

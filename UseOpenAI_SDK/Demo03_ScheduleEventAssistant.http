@@ -1,0 +1,95 @@
+@name = Simple Chat
+
+
+
+
+
+###
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+  "tools": [
+    {
+      "function": {
+        "description": "check the scheduled events in specified day",
+        "name": "EventSchedulerPlugins-check_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "date"
+          ],
+          "properties": {
+            "date": {
+              "description": "specified the date",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "add event to my calendar, if no conflict, return success.",
+        "name": "EventSchedulerPlugins-add_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "since",
+            "until",
+            "eventDescription"
+          ],
+          "properties": {
+            "since": {
+              "description": "start datetime",
+              "type": "string"
+            },
+            "until": {
+              "description": "end datetime",
+              "type": "string"
+            },
+            "eventDescription": {
+              "description": "event description",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Get the current date and time",
+        "name": "EventSchedulerPlugins-get_current_datetime",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            
+          ],
+          "properties": {
+            
+          }
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Find a 30 min slot for a run tomorrow morning."
+    }
+  ],
+  "model": "gpt-4o-mini",
+  "tool_choice": "auto"
+}
+
+
+
+
