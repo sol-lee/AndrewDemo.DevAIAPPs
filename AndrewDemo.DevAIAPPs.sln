@@ -9,13 +9,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseMicrosoft_SemanticKernel
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseMicrosoft_KernelMemoryPlugin", "UseMicrosoft_KernelMemoryPlugin\UseMicrosoft_KernelMemoryPlugin.csproj", "{9E7BEF7B-E3CF-4D4B-934E-37C750040F29}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2898B24F-BE19-4CA8-9C9C-E56EDFF0FBC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelMemory_MCPServer", "KernelMemory_MCPServer\KernelMemory_MCPServer.csproj", "{C77FB4C1-6310-4E0A-8A21-3B80E3699207}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelMemory_MCPServer_UseOfficialSDK", "KernelMemory_MCPServer_UseOfficialSDK\KernelMemory_MCPServer_UseOfficialSDK.csproj", "{38354EAF-F350-4068-AA6E-99B761C87B84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		docs\NOTES.md = docs\NOTES.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yaml = docker-compose.yaml
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelMemory_MCPServer", "KernelMemory_MCPServer\KernelMemory_MCPServer.csproj", "{C77FB4C1-6310-4E0A-8A21-3B80E3699207}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +46,10 @@ Global
 		{C77FB4C1-6310-4E0A-8A21-3B80E3699207}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C77FB4C1-6310-4E0A-8A21-3B80E3699207}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C77FB4C1-6310-4E0A-8A21-3B80E3699207}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38354EAF-F350-4068-AA6E-99B761C87B84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38354EAF-F350-4068-AA6E-99B761C87B84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38354EAF-F350-4068-AA6E-99B761C87B84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38354EAF-F350-4068-AA6E-99B761C87B84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
