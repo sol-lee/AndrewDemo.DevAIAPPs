@@ -182,7 +182,8 @@ namespace UseMicrosoft_KernelMemoryPlugin
             var kernel = builder.Build();
             var chat = kernel.GetRequiredService<IChatCompletionService>();
 
-            const string base_folder = @"C:\CodeWork\github.com\AndrewDemo.DevAIAPPs\UseMicrosoft_KernelMemoryPlugin\blogs\";
+            const string base_folder = //@"D:\CodeWork\github.com\AndrewDemo.DevAIAPPs\UseMicrosoft_KernelMemoryPlugin\blogs\";
+                @"..\..\..\blogs\";
 
             string post_folder = Path.Combine(base_folder, "posts");
             string synthesis_folder = Path.Combine(base_folder, "synthesis");
