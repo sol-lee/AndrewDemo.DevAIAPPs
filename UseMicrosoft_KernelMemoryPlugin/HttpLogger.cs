@@ -31,7 +31,7 @@ namespace UseMicrosoft_KernelMemoryPlugin
             HttpRequestMessage request, CancellationToken cancellationToken)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Request:");
+            Console.WriteLine("Request Body:");
             Console.ForegroundColor = ConsoleColor.DarkGray;
             //Console.WriteLine(request.ToString());
             //Console.WriteLine();
@@ -46,7 +46,7 @@ namespace UseMicrosoft_KernelMemoryPlugin
             HttpResponseMessage response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Response:");
+            Console.WriteLine("Response Body:");
             Console.ForegroundColor = ConsoleColor.DarkGray;
             //Console.WriteLine(response.ToString());
             //Console.WriteLine();

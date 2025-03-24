@@ -27,10 +27,10 @@ namespace UseMicrosoft_SemanticKernel
             HttpRequestMessage request, CancellationToken cancellationToken)
         {
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Request:");
+            Console.WriteLine("Request Body:");
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine(request.ToString());
-            Console.WriteLine();
+            //Console.WriteLine(request.ToString());
+            //Console.WriteLine();
             if (request.Content != null)
             {
                 Console.WriteLine(await request.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
@@ -42,10 +42,10 @@ namespace UseMicrosoft_SemanticKernel
             HttpResponseMessage response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Response:");
+            Console.WriteLine("Response Body:");
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            Console.WriteLine(response.ToString());
-            Console.WriteLine();
+            //Console.WriteLine(response.ToString());
+            //Console.WriteLine();
             if (response.Content != null)
             {
                 Console.WriteLine(await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false));
