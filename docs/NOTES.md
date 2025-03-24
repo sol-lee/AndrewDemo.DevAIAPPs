@@ -127,7 +127,7 @@ But I already bought bread.
 
 
 
-## Day 3, LLM - Function Calling (Case Study)
+# Day 3, LLM - Function Calling (Case Study)
 
 Link: [Â²³ø](https://www.facebook.com/share/p/12GFiqp8MnL/)
 
