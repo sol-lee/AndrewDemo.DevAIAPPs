@@ -3,9 +3,9 @@
 
 
 
-# Day 1, LLM - Structured Output
+## Day 1, LLM - Structured Output
 
-Link: [簡報](https://www.facebook.com/share/p/1DcJTse4C6/)
+Link: [FB POST](https://www.facebook.com/share/p/1DcJTse4C6/)
 
 ![alt text](image.png)
 
@@ -84,9 +84,9 @@ Extract the address from the following text, Response using the following json f
 
 
 
-# Day 2, LLM - Function Calling (Basic)
+## Day 2, LLM - Function Calling (Basic)
 
-Link: [簡報](https://www.facebook.com/share/p/1BozfZzzov/)
+Link: [FB POST](https://www.facebook.com/share/p/1BozfZzzov/)
 
 ![alt text](image-1.png)
 
@@ -157,9 +157,9 @@ But I already bought bread.
 
 
 
-# Day 3, LLM - Function Calling (Case Study)
+## Day 3, LLM - Function Calling (Case Study)
 
-Link: [簡報](https://www.facebook.com/share/p/12GFiqp8MnL/)
+Link: [FB POST](https://www.facebook.com/share/p/12GFiqp8MnL/)
 
 ![alt text](image-2.png)
 
@@ -227,9 +227,9 @@ AI: Morning run scheduled for tomorrow at 9am !
 
 
 
-# Day 4, LLM - RAG with Function Calling
+## Day 4, LLM - RAG with Function Calling
 
-Link: [簡報](https://www.facebook.com/share/p/16HVPbinAY/)
+Link: [FB POST](https://www.facebook.com/share/p/16HVPbinAY/)
 
 ![alt text](image-3.png)
 
@@ -270,9 +270,9 @@ Link: [簡報](https://www.facebook.com/share/p/16HVPbinAY/)
 
 
 
-# Day 5, RAG as a Service, Microsoft Kernel Memory
+## Day 5, RAG as a Service, Microsoft Kernel Memory
 
-Link: [簡報](https://www.facebook.com/share/p/162CgFvQs8/)
+Link: [FB POST](https://www.facebook.com/share/p/162CgFvQs8/)
 
 ![alt text](image-4.png)
 
@@ -304,9 +304,9 @@ MSKM 已經在他的 NuGet package 內準備好 SK 使用的 Memory Plugins 了，你可以直接將
 
 
 
-# Day 6, 進階 RAG 應用, 生成檢索專用的資訊
+## Day 6, 進階 RAG 應用, 生成檢索專用的資訊
 
-Link: [簡報](https://www.facebook.com/share/p/1AUSLJBR6Q/)
+Link: [FB POST](https://www.facebook.com/share/p/1AUSLJBR6Q/)
 
 ![alt text](image-6.png)
 
@@ -354,9 +354,9 @@ RAG 主要檢索用的技巧, 就是把內容向量化。向量化的模型通常都有最適合的內容大小。以
 
 
 
-# 7, MSKM 與其他系統的整合應用
+## Day 7, MSKM 與其他系統的整合應用
 
-Link: [簡報]()
+Link: [FB POST]()
 
 ![alt text](claude1.jpg)
 > MSKM MCPServer 直接掛上 Claude Desktop, 讓 LLM 直接搜尋我的部落格資訊的示範
