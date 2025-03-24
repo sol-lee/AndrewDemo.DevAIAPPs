@@ -28,13 +28,14 @@ Link: [簡報](https://www.facebook.com/share/p/1DcJTse4C6/)
 反射式回答: 那就 call chat-completion api 就好了啊...
 不過，你是 Developer, 你其實可以想得更多一點。我試著多列幾個思考題:
 
-1. 1. 你要 LLM 用什麼格式回答你?
+1. 你要 LLM 用什麼格式回答你?
 2. 如果有 1% 的機率 LLM 回答不出來，你程式能怎麼判斷?
 3. 你還該讓 LLM 處理雜七雜八的要求嗎? 通通寫在 prompt 讓 AI 一氣呵成比較好? 還是取得地址後自己打 google map api 處理比較好?
 
-1. 開發應用程式就是這樣，依靠開發團隊的經驗，把處理過程寫成應用程式，使用者就能站在你的肩膀上不用再踩一次地雷。如果你的服務使用量夠大，你的一念之間的決定可能影響著巨大的效率提升..
+開發應用程式就是這樣，依靠開發團隊的經驗，把處理過程寫成應用程式，使用者就能站在你的肩膀上不用再踩一次地雷。如果你的服務使用量夠大，你的一念之間的決定可能影響著巨大的效率提升..
 這才是身為 Developer 的職責，也是身為 Developer 的優勢。這世界有更多這種新的服務需要開發，要讓 AI 來開發 AI 的應用程式，現階段也還沒那麼容易，這會是 Developer 大顯身手的地方。回到這題來看，你會發現你平常在 ChatGPT 下的 prompt, 都不見得適合直接拿到程式內使用。
 那麼怎麼弄才是 Developer 的作法?
+
 上面的問題，我的答案是:
 
 1. 用 Json output  
@@ -52,17 +53,33 @@ Link: [簡報](https://www.facebook.com/share/p/1DcJTse4C6/)
 
 用不同方式寫這段 code... 其實有很大的差別。SDK 相依姓的取捨，跟帶來的便利，你要懂得之間的差別。別以為只是 call API 就結束，如果你看到你 call api 要自己寫 json schema, 而用 semantic kernel 的時候只需要給 C# type, 你的想法就會改變了...
 
-## Demo
+**Demo**: 
 
 1. Simple Chat
-- HTTP Client
-- OpenAI .NET SDK
-- Microsoft Semantic Kernel
+- [HTTP Client](../UseOpenAI_SDK/Example01_SimpleChat.http)
+- [OpenAI .NET SDK](../UseOpenAI_SDK/Program_Example01_SimpleChat.cs)
+- [Microsoft Semantic Kernel](../UseMicrosoft_SemanticKernel/Program_Example01_SimpleChat.cs)
 
 2. Structured Output
-- HTTP Client
-- OpenAI .NET SDK
-- Microsoft Semantic Kernel
+- [HTTP Client](../UseOpenAI_SDK/Demo02_ExtractAddress.http)
+- ~~OpenAI .NET SDK~~
+- [Microsoft Semantic Kernel](../UseMicrosoft_SemanticKernel/Program_Demo02_ExtractAddress.cs)
+- [Chat GPT](https://chatgpt.com/share/67e174b1-f734-800d-b904-08e1fa4c3b26)  
+```
+Extract the address from the following text, Response using the following json format:
+
+{
+	'street_address'?: string,
+	'city'?: string,
+	'postal_code'?: string,
+	'country'?: string
+}
+
+- For the tea shop in Paris there is a good one on rue montorgueil.
+- You remember the number?
+- 90, I guess.
+```
+
 
 
 
@@ -119,11 +136,24 @@ But I already bought bread.
 回到 Function Calling, 其實到這裡為止, 你只完成了 "Call", 還沒完成 "Return" ... 更完整的應用案例，我留到明天第三頁簡報再來聊~
 
 
-## Demo
+**Demo**: 
 
-1. Extract Address
-- HTTP Client
-- Microsoft Semantic Kernel
+Function Calling (Basic)
+- [Chat GPT](https://chatgpt.com/share/67e1754e-5afc-800d-b766-1158b4a7ced3)
+
+```text
+Based on the following conversation, manage the shopping list, 
+write your response in JSON using the following format:
+
+[
+  { "action": "add", "item": string,  "quantity": string },
+  { "action": "delete", "item": string }
+]
+
+--
+Mmm, remember to buy some butter and a pair of zucchinis. 
+But I already bought bread.
+```
 
 
 
@@ -184,11 +214,16 @@ AI: Morning run scheduled for tomorrow at 9am !
 
 連續三天，看到這邊，是否有解開一些疑問? 是否想通了 AI 這些神奇的能力是怎麼被創造出來的? 這三部分，我常常都稱他為 AI 時代的開發基礎技巧，它的重要性不亞於當年我剛開始學寫程式時，書上交給我的基本流程控制技巧 ( 例如: If, For Loop 等等 )。我強烈建議所有的 Developer, 應該把這些應用方式當作基礎能力, 確實的掌握清楚後再來學各種框架或是快速開發的技能。
 
-## Demo
+
+
+
+
+
+**Demo**: 
 
 1. Schedle Event Assistant
-- HTTP Client
-- Microsoft Semantic Kernel
+- [HTTP Client](../UseOpenAI_SDK/Demo03_ScheduleEventAssistant.http)
+- [Microsoft Semantic Kernel](../UseMicrosoft_SemanticKernel/Program_Demo03_ScheduleEventAssistant.cs)
 
 
 
@@ -223,12 +258,11 @@ Link: [簡報](https://www.facebook.com/share/p/16HVPbinAY/)
 你會發現，到最後你只要選擇一個夠可靠的檢索服務就夠了 (你不一定要從零開始，自己用向量資料庫慢慢打造)，只要他能夠被當成 Semantic Kernel 的 Plugins, 就能被 LLM 納入他的工具箱內，需要時隨時取用了。那個檢索服務最合適? 我鋪梗鋪那麼久，主角終於能現身了，就是 Microsoft Kernel Memory ... , 明天就來聊這個服務能幹嘛 ?
 
 
-## Demo
+**Demo**: 
 
-(Semantic Kernel ONLY)
-
-1. RAG Basic ( custom prompt )
-1. RAG with Bing Search
+1. [Chat GPT, RAG with Custom Prompt](https://chatgpt.com/share/674e882a-5bb4-800d-a8e6-64b5e7395c9a)
+1. [RAG Basic](../UseMicrosoft_KernelMemoryPlugin/Program_Example01_RAG_Basic.cs)
+1. [RAG with Bing Search](../UseMicrosoft_KernelMemoryPlugin/Program_Example02_RAG_With_Search_Plugins.cs)
 
 
 
@@ -262,12 +296,12 @@ MSKM 已經在他的 NuGet package 內準備好 SK 使用的 Memory Plugins 了，你可以直接將
 預告 #6, 如果你這些技能都備齊了, 明天我要來聊聊用 SK + MSKM 示範一些進階的 RAG 應用方式, 請期待明天的葉佩文 ?
 
 
-## Demo
+**Demo**: 
 
-1. RAG with Kernel Memory Plugins
-1. RAG with Kernel Memory Custom Plugins
-1. Demo from Kernel Memory Offical Repo
-1. 
+1. [RAG with Kernel Memory Plugins](../UseMicrosoft_KernelMemoryPlugin/Program_Example03_RAG_With_KernelMemory_Plugins.cs)
+1. [RAG with Kernel Memory Custom Plugins](../UseMicrosoft_KernelMemoryPlugin/Program_Example04_RAG_With_KernelMemory_Custom_Plugins.cs)
+1. [Demo from Kernel Memory Offical Repo](../UseMicrosoft_KernelMemoryPlugin/Program_Example05_DemoFromKernelMemoryOfficalRepo.cs)
+
 
 
 # Day 6, 進階 RAG 應用, 生成檢索專用的資訊
@@ -313,10 +347,10 @@ RAG 主要檢索用的技巧, 就是把內容向量化。向量化的模型通常都有最適合的內容大小。以
 
 
 
-## Demo
+**Demo**: 
 
-1. Multiple Plugins Demo
-1. Synthesize Content for RAG
+1. [Multiple Plugins Demo](../UseMicrosoft_KernelMemoryPlugin/Program_Example06_MultiplePluginsDemo.cs)
+	1. [Synthesize Content for RAG](../UseMicrosoft_KernelMemoryPlugin/Program_Example07_SynthesisWithRAG.cs)
 
 
 
@@ -363,14 +397,37 @@ Link: [簡報]()
 不過，只要你要 live demo 就會有魔咒...  XDD, 這次的 demo 有兩個地方要注意:
 
 1. MSKM 官方 docker image 請退版退到 0.96.x, 2025/02 release 的版本重寫過 chunking 的程式碼, 按照 token 將內容分段, 結果中文的部分沒處理好, 會變成 "晶晶體" XDD (會有疊字)。我已經發了 issue, 不過還沒解決的樣子...
-1. MCP/csharp-sdk 也是, 回應的 json-rpc 包含中文的 json 資料, 直接讀取沒問題, 但是 Cloud Desktop 似乎無法很好的處理帶中文字的 json data, 必須將編碼轉為 \u1234\u1234 這樣的方式才能動... 同樣的我也發 issue 了，這次 demo 我先自己 build sdk, 手動換掉 JsonSerializationOption 後暫時能解決, 各位可以等官方 SDK 的修正...
+1. MCP/csharp-sdk 也是, 回應的 json-rpc 包含中文的 json 資料, 直接讀取沒問題, 但是 Cloud Desktop 似乎無法很好的處理帶中文字的 json data, 必須將編碼轉為 /u1234/u1234 這樣的方式才能動... 同樣的我也發 issue 了，這次 demo 我先自己 build sdk, 手動換掉 JsonSerializationOption 後暫時能解決, 各位可以等官方 SDK 的修正...
 
 我會展示直接用 console + stdio 來操作 MCP server, 讓大家了解通訊過程
 也會真的拿 Claude Desktop 來示範, 實際使用 RAG 的感受
 
 
 
---
-這是最後一篇葉佩雯了 :D
-FB 我只介紹我要傳達的內容，實際 demo 跟 code 請參加明天 03/25 的直播
-直播連結我放在第一則留言
+
+**Demo**: 
+
+1. [Use MCPSharp](../KernelMemory_MCPServer/Program.cs)
+1. [Use MCP Official Csharp SDK](D:/CodeWork/github.com/csharp-sdk/samples/TestServerWithHosting/TestServerWithHosting.csproj)
+
+MCP command(s):
+
+```json
+
+{"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"claude-ai","version":"0.1.0"}},"jsonrpc":"2.0","id":0}
+{"method":"notifications/initialized","jsonrpc":"2.0"}
+{"method":"resources/list","params":{},"jsonrpc":"2.0","id":1}
+
+{"method":"tools/list","params":{},"jsonrpc":"2.0","id":2}
+{"method":"tools/call","params":{"name":"search","arguments":{"query":"SDK design","limit":3}},"jsonrpc":"2.0","id":9}
+
+```
+
+Sample Claude Prompt:
+
+```
+
+search andrew's blog, tell me about "SDK design" concepts that andrew says...
+in traditional chinese, and give me the source URL that you referenced from.
+
+```

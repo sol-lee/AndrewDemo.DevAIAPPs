@@ -39,20 +39,6 @@ namespace KernelMemory_MCPServer_UseOfficialSDK
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         [McpToolType]
         public static class CustomSynthesisSearchPlugin
         {
@@ -74,12 +60,7 @@ namespace KernelMemory_MCPServer_UseOfficialSDK
                 [Description("The query to search for.")]
                 string query,
 
-                //[Description("Search from which synthesis source? abstract | question | problem | none")]
-                //[McpParameter(true, "Search from which synthesis source? abstract | question | problem | none")]
-                //SynthesisTypeEnum synthesis = SynthesisTypeEnum.None,
-
                 [Description("The index to search in.")]
-            //[McpParameter(true, "The index to search in.")]
                 int limit = 3)
             {
                 var synthesis = SynthesisTypeEnum.None;
@@ -89,7 +70,7 @@ namespace KernelMemory_MCPServer_UseOfficialSDK
                     query,
                     index: "blog",
                     //filter: (new MemoryFilter()).ByTag("synthesis", synthesis.ToString().ToLower()),
-                    filter: (new MemoryFilter()).ByTag("synthesis", "question"),
+                    //filter: (new MemoryFilter()).ByTag("synthesis", "question"),
                     limit: limit);
 
                 StringBuilder sb = new StringBuilder();
@@ -121,37 +102,16 @@ namespace KernelMemory_MCPServer_UseOfficialSDK
                                 break;
                         }
 
-                        //sb.AppendLine();
-                        //sb.AppendLine($"```");
-                        //sb.AppendLine(p.Text);
-                        //sb.AppendLine($"```");
-                        //sb.AppendLine();
+                        sb.AppendLine();
+                        sb.AppendLine($"```");
+                        sb.AppendLine(p.Text);
+                        sb.AppendLine($"```");
+                        sb.AppendLine();
                     }
                 }
-
-                //Console.ForegroundColor = ConsoleColor.Yellow;
-                //Console.WriteLine($"Kernel Memory Search Results:");
-                //Console.ForegroundColor = ConsoleColor.DarkGray;
-                //Console.WriteLine(sb.ToString());
-                //Console.ResetColor();
-
                 return sb.ToString();
             }
         }
-
-
     }
-
-
-
-    //[McpToolType]
-    //public static class EchoTool
-    //{
-    //    [McpTool, Description("Echoes the message back to the client.")]
-    //    public static string Echo(string message) => $"hello {message}";
-    //}
-
-
-
 
 }
