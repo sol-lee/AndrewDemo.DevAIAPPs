@@ -23,9 +23,9 @@ namespace UseMicrosoft_KernelMemoryPlugin
             var builder = Kernel.CreateBuilder();
             builder
                 .AddOpenAIChatCompletion(
-                    //modelId: "gpt-4o",
+                    modelId: "gpt-4o",
                     //modelId: "gpt-4o-mini",
-                    modelId: "o1",
+                    //modelId: "o1",
                     apiKey: OPENAI_APIKEY,
                     httpClient: HttpLogger.GetHttpClient(true));
 
@@ -44,9 +44,9 @@ namespace UseMicrosoft_KernelMemoryPlugin
             // 根據不同的問法，Plugin 有能力調整不同的檢索條件, 挑出最適當的內容來進行 RAG
             string question =
                 //"摘要安德魯寫過的 RAG 主題，它的核心概念是甚麼?";     // 意圖: Abstract
-                //"安德魯說明過那些跟 WSL 相關的解題案例?";            // 意圖: Problem
+                "安德魯說明過那些跟 WSL 相關的解題案例?";            // 意圖: Problem
                 //"安德魯說明過那些跟 WSL 相關的常見問題?";             // 意圖: Question
-                "我想知道安德魯寫過那些關於 WSL 的內容，我要看他的原文片段，請勿摘要或是彙整, 謝謝!"; // 意圖: None
+                //"我想知道安德魯寫過那些關於 WSL 的內容，我要看他的原文片段，請勿摘要或是彙整, 謝謝!"; // 意圖: None
 
             /*
 
@@ -115,8 +115,9 @@ namespace UseMicrosoft_KernelMemoryPlugin
                 var km = new MemoryWebClient("http://127.0.0.1:9001/", KERNEL_MEMORY_APIKEY);
                 var result = await km.SearchAsync(
                     query, 
-                    index: "blog", 
+                    index: "blog",
                     filter: (new MemoryFilter()).ByTag("synthesis", synthesis.ToString().ToLower()),
+                    //filter: (new MemoryFilter()).ByTag("synthesis", "none"),
                     limit: limit);
 
                 StringBuilder sb = new StringBuilder();
@@ -209,20 +210,20 @@ namespace UseMicrosoft_KernelMemoryPlugin
                       "reference": [ {列出文內所有參考資料或引用的文章清單} ]
                     }
 
-                    Step 2. 全文層級摘要, 300 字, 用下列 markdown 結構:
+                    Step 2. 全文層級摘要, 500 字, 用下列 markdown 結構:
                     ## Abstraction
                     { 摘要 }
 
-                    Step 3. 段落層級摘要, 每段 300 字
+                    Step 3. 段落層級摘要, 每段 500 字
                     ## 段落{n}, { 段落標題 }
                     { 摘要內容 }
 
-                    Step 4. 用 FAQ 型態歸納文章的摘要，沒有數字上限。每個 FAQ 控制在 100 字以內
+                    Step 4. 用 FAQ 型態歸納文章的摘要，沒有數量上限。每組問答的內容，控制在 500 字以內
                     ## FAQ
                     Q{n}: {問題}
                     A{n}: {回答}
 
-                    Step 5. 用解決問題 Case 的型態來歸納文章的摘要。文內提了幾種問題 (Problem)，並且有說明原因 (RootCause)，解法 (Resolution)，案例 (Example) 的結構，沒有上限，條列給我。
+                    Step 5. 用解決問題 Case 的型態來歸納文章的摘要。找出文章內提了那些問題 (Problem)，並且有說明原因 (RootCause)，解法 (Resolution)，案例 (Example) 的結構，沒有上限，條列給我。
                     Case {n}: {標題}
                     - Problem: {問題敘述}
                     - RootCause: {原因分析}

@@ -18,11 +18,6 @@ namespace UseMicrosoft_SemanticKernel
                     apiKey: OPENAI_APIKEY,
                     httpClient: HttpLogger.GetHttpClient(true));
 
-            // Add DI services to the builder.
-            // Add: Logging services.
-            //builder.Services
-            //    .AddLogging(services => services.AddConsole().SetMinimumLevel(LogLevel.Trace));
-
             // Add a chat completion plugin to the builder.
             builder.Plugins.AddFromType<EventSchedulerPlugins>();
 

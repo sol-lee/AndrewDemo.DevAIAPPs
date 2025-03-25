@@ -21,7 +21,12 @@ namespace UseOpenAI_SDK
             OPENAI_APIKEY = config["OpenAI:ApiKey"];
             OPENAI_ORGID = config["OpenAI:OrgId"];
 
-            Example01_SimpleChat();
+            //Example01_SimpleChat();
+
+            //Demo02_ExtractAddress_JsonObject();
+            Demo02_ExtractAddress_JsonSchema();
+
+
             //Example03_FunctionCalling();
             //Example06_StructuredOutputs_JsonSchema();
             //Example06_StructuredOutputs_JsonObject();

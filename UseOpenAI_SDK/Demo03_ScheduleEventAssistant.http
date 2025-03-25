@@ -4,7 +4,7 @@
 
 
 
-###
+### Step 1, ask
 
 POST https://api.openai.com/v1/chat/completions
 Content-Type: application/json
@@ -14,7 +14,7 @@ Authorization: Bearer {{OpenAI_APIKEY}}
   "tools": [
     {
       "function": {
-        "description": "check the scheduled events in specified day",
+        "description": "check the scheduled events in specified day.",
         "name": "EventSchedulerPlugins-check_event",
         "strict": false,
         "parameters": {
@@ -34,7 +34,7 @@ Authorization: Bearer {{OpenAI_APIKEY}}
     },
     {
       "function": {
-        "description": "add event to my calendar, if no conflict, return success.",
+        "description": "add event to my calendar, if no conflict, return success. ",
         "name": "EventSchedulerPlugins-add_event",
         "strict": false,
         "parameters": {
@@ -83,7 +83,7 @@ Authorization: Bearer {{OpenAI_APIKEY}}
   "messages": [
     {
       "role": "user",
-      "content": "Find a 30 min slot for a run tomorrow morning."
+      "content": "Find a 30 min slot for a run tomorrow morning.\r\nBook it in my calendar, please."
     }
   ],
   "model": "gpt-4o-mini",
@@ -93,3 +93,526 @@ Authorization: Bearer {{OpenAI_APIKEY}}
 
 
 
+### step 2, response current date and time
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+  "tools": [
+    {
+      "function": {
+        "description": "check the scheduled events in specified day.",
+        "name": "EventSchedulerPlugins-check_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "date"
+          ],
+          "properties": {
+            "date": {
+              "description": "specified the date",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "add event to my calendar, if no conflict, return success. ",
+        "name": "EventSchedulerPlugins-add_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "since",
+            "until",
+            "eventDescription"
+          ],
+          "properties": {
+            "since": {
+              "description": "start datetime",
+              "type": "string"
+            },
+            "until": {
+              "description": "end datetime",
+              "type": "string"
+            },
+            "eventDescription": {
+              "description": "event description",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Get the current date and time",
+        "name": "EventSchedulerPlugins-get_current_datetime",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            
+          ],
+          "properties": {
+            
+          }
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Find a 30 min slot for a run tomorrow morning.\r\nBook it in my calendar, please."
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_6iborrUWl5pjIWlJBaStTYN3",
+          "function": {
+            "name": "EventSchedulerPlugins-get_current_datetime",
+            "arguments": "{}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_6iborrUWl5pjIWlJBaStTYN3",
+      "content": "\u00222025-03-25T15:58:43.1010059\u002B08:00\u0022"
+    }
+  ],
+  "model": "gpt-4o-mini",
+  "tool_choice": "auto"
+}
+
+
+
+
+### step 3, check the available time slot
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+  "tools": [
+    {
+      "function": {
+        "description": "check the scheduled events in specified day.",
+        "name": "EventSchedulerPlugins-check_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "date"
+          ],
+          "properties": {
+            "date": {
+              "description": "specified the date",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "add event to my calendar, if no conflict, return success. ",
+        "name": "EventSchedulerPlugins-add_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "since",
+            "until",
+            "eventDescription"
+          ],
+          "properties": {
+            "since": {
+              "description": "start datetime",
+              "type": "string"
+            },
+            "until": {
+              "description": "end datetime",
+              "type": "string"
+            },
+            "eventDescription": {
+              "description": "event description",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Get the current date and time",
+        "name": "EventSchedulerPlugins-get_current_datetime",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            
+          ],
+          "properties": {
+            
+          }
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Find a 30 min slot for a run tomorrow morning.\r\nBook it in my calendar, please."
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_6iborrUWl5pjIWlJBaStTYN3",
+          "function": {
+            "name": "EventSchedulerPlugins-get_current_datetime",
+            "arguments": "{}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_6iborrUWl5pjIWlJBaStTYN3",
+      "content": "\u00222025-03-25T15:58:43.1010059\u002B08:00\u0022"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_pnzoSnLQv3silDdtRHCXUD2s",
+          "function": {
+            "name": "EventSchedulerPlugins-check_event",
+            "arguments": "{\u0022date\u0022:\u00222025-03-26\u0022}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_pnzoSnLQv3silDdtRHCXUD2s",
+      "content": "[\u00222025-03-26 07:00 ~ 08:00 \u68B3\u6D17\uFF0C\u6E96\u5099\u65E9\u9910\u0022,\u00222025-03-26 08:00 ~ 09:00 \u5403\u65E9\u9910\u0022,\u00222025-03-26 09:30 ~ 10:00 \u901A\u52E4\uFF0C\u958B\u8ECA\u4E0A\u73ED\u0022,\u00222025-03-26 10:00 ~ 11:00 \u8DDF John \u958B\u6703\u0022]"
+    }
+  ],
+  "model": "gpt-4o-mini",
+  "tool_choice": "auto"
+}
+
+
+
+
+### step 4, add the event to the calendar
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+  "tools": [
+    {
+      "function": {
+        "description": "check the scheduled events in specified day.",
+        "name": "EventSchedulerPlugins-check_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "date"
+          ],
+          "properties": {
+            "date": {
+              "description": "specified the date",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "add event to my calendar, if no conflict, return success. ",
+        "name": "EventSchedulerPlugins-add_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "since",
+            "until",
+            "eventDescription"
+          ],
+          "properties": {
+            "since": {
+              "description": "start datetime",
+              "type": "string"
+            },
+            "until": {
+              "description": "end datetime",
+              "type": "string"
+            },
+            "eventDescription": {
+              "description": "event description",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Get the current date and time",
+        "name": "EventSchedulerPlugins-get_current_datetime",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            
+          ],
+          "properties": {
+            
+          }
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Find a 30 min slot for a run tomorrow morning.\r\nBook it in my calendar, please."
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_6iborrUWl5pjIWlJBaStTYN3",
+          "function": {
+            "name": "EventSchedulerPlugins-get_current_datetime",
+            "arguments": "{}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_6iborrUWl5pjIWlJBaStTYN3",
+      "content": "\u00222025-03-25T15:58:43.1010059\u002B08:00\u0022"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_pnzoSnLQv3silDdtRHCXUD2s",
+          "function": {
+            "name": "EventSchedulerPlugins-check_event",
+            "arguments": "{\u0022date\u0022:\u00222025-03-26\u0022}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_pnzoSnLQv3silDdtRHCXUD2s",
+      "content": "[\u00222025-03-26 07:00 ~ 08:00 \u68B3\u6D17\uFF0C\u6E96\u5099\u65E9\u9910\u0022,\u00222025-03-26 08:00 ~ 09:00 \u5403\u65E9\u9910\u0022,\u00222025-03-26 09:30 ~ 10:00 \u901A\u52E4\uFF0C\u958B\u8ECA\u4E0A\u73ED\u0022,\u00222025-03-26 10:00 ~ 11:00 \u8DDF John \u958B\u6703\u0022]"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_i6LaCqjKDZZzVKcX7gIltxfJ",
+          "function": {
+            "name": "EventSchedulerPlugins-add_event",
+            "arguments": "{\u0022since\u0022:\u00222025-03-26T06:30:00\u002B08:00\u0022,\u0022until\u0022:\u00222025-03-26T07:00:00\u002B08:00\u0022,\u0022eventDescription\u0022:\u0022Morning run\u0022}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_i6LaCqjKDZZzVKcX7gIltxfJ",
+      "content": "success"
+    }
+  ],
+  "model": "gpt-4o-mini",
+  "tool_choice": "auto"
+}
+
+
+
+
+###
+
+POST https://api.openai.com/v1/chat/completions
+Content-Type: application/json
+Authorization: Bearer {{OpenAI_APIKEY}}
+
+{
+  "tools": [
+    {
+      "function": {
+        "description": "check the scheduled events in specified day.",
+        "name": "EventSchedulerPlugins-check_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "date"
+          ],
+          "properties": {
+            "date": {
+              "description": "specified the date",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "add event to my calendar, if no conflict, return success. ",
+        "name": "EventSchedulerPlugins-add_event",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            "since",
+            "until",
+            "eventDescription"
+          ],
+          "properties": {
+            "since": {
+              "description": "start datetime",
+              "type": "string"
+            },
+            "until": {
+              "description": "end datetime",
+              "type": "string"
+            },
+            "eventDescription": {
+              "description": "event description",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "type": "function"
+    },
+    {
+      "function": {
+        "description": "Get the current date and time",
+        "name": "EventSchedulerPlugins-get_current_datetime",
+        "strict": false,
+        "parameters": {
+          "type": "object",
+          "required": [
+            
+          ],
+          "properties": {
+            
+          }
+        }
+      },
+      "type": "function"
+    }
+  ],
+  "messages": [
+    {
+      "role": "user",
+      "content": "Find a 30 min slot for a run tomorrow morning.\r\nBook it in my calendar, please."
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_6iborrUWl5pjIWlJBaStTYN3",
+          "function": {
+            "name": "EventSchedulerPlugins-get_current_datetime",
+            "arguments": "{}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_6iborrUWl5pjIWlJBaStTYN3",
+      "content": "\u00222025-03-25T15:58:43.1010059\u002B08:00\u0022"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_pnzoSnLQv3silDdtRHCXUD2s",
+          "function": {
+            "name": "EventSchedulerPlugins-check_event",
+            "arguments": "{\u0022date\u0022:\u00222025-03-26\u0022}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_pnzoSnLQv3silDdtRHCXUD2s",
+      "content": "[\u00222025-03-26 07:00 ~ 08:00 \u68B3\u6D17\uFF0C\u6E96\u5099\u65E9\u9910\u0022,\u00222025-03-26 08:00 ~ 09:00 \u5403\u65E9\u9910\u0022,\u00222025-03-26 09:30 ~ 10:00 \u901A\u52E4\uFF0C\u958B\u8ECA\u4E0A\u73ED\u0022,\u00222025-03-26 10:00 ~ 11:00 \u8DDF John \u958B\u6703\u0022]"
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_i6LaCqjKDZZzVKcX7gIltxfJ",
+          "function": {
+            "name": "EventSchedulerPlugins-add_event",
+            "arguments": "{\u0022since\u0022:\u00222025-03-26T06:30:00\u002B08:00\u0022,\u0022until\u0022:\u00222025-03-26T07:00:00\u002B08:00\u0022,\u0022eventDescription\u0022:\u0022Morning run\u0022}"
+          },
+          "type": "function"
+        }
+      ]
+    },
+    {
+      "role": "tool",
+      "tool_call_id": "call_i6LaCqjKDZZzVKcX7gIltxfJ",
+      "content": "success"
+    }
+  ],
+  "model": "gpt-4o-mini",
+  "tool_choice": "auto"
+}

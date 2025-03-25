@@ -2,6 +2,23 @@
 
 
 
+## Day 0, One API - Chat Completion
+
+![](image-0.png)
+
+LLM 的 API 很 "單純"，主要就只有一個 Chat Completion API，這 API 的用途就是回答你的問題。
+不過只靠這個 API 就能解決所有問題，因此複雜度都不在 API 本身，在於你怎麼運用他。
+
+你該學習的是各種解題需要的 "設計案例" (你也可以說是 AI APP 的 Design Patterns)，在開始之前我們先來看最基本的使用方式...
+
+
+**Demo**:
+
+Simple Chat
+- [HTTP Client](../UseOpenAI_SDK/Example01_SimpleChat.http)
+- [OpenAI .NET SDK](../UseOpenAI_SDK/Program_Example01_SimpleChat.cs)
+- [Microsoft Semantic Kernel](../UseMicrosoft_SemanticKernel/Program_Example01_SimpleChat.cs)
+
 
 ## Day 1, LLM - Structured Output
 
@@ -55,16 +72,13 @@ Link: [FB POST](https://www.facebook.com/share/p/1DcJTse4C6/)
 
 **Demo**: 
 
-1. Simple Chat
-- [HTTP Client](../UseOpenAI_SDK/Example01_SimpleChat.http)
-- [OpenAI .NET SDK](../UseOpenAI_SDK/Program_Example01_SimpleChat.cs)
-- [Microsoft Semantic Kernel](../UseMicrosoft_SemanticKernel/Program_Example01_SimpleChat.cs)
 
-2. Structured Output
-- [HTTP Client](../UseOpenAI_SDK/Demo02_ExtractAddress.http)
-- ~~OpenAI .NET SDK~~
-- [Microsoft Semantic Kernel](../UseMicrosoft_SemanticKernel/Program_Demo02_ExtractAddress.cs)
+Structured Output
 - [Chat GPT](https://chatgpt.com/share/67e174b1-f734-800d-b904-08e1fa4c3b26)  
+- [HTTP Client](../UseOpenAI_SDK/Demo02_ExtractAddress.http)
+- [OpenAI .NET SDK](../UseOpenAI_SDK/Program_Demo02_ExtractAddress.cs)
+- [Microsoft Semantic Kernel](../UseMicrosoft_SemanticKernel/Program_Demo02_ExtractAddress.cs)
+
 ```
 Extract the address from the following text, Response using the following json format:
 
@@ -167,7 +181,7 @@ Link: [FB POST](https://www.facebook.com/share/p/12GFiqp8MnL/)
 昨天談完 Function Calling 的基本型態, 今天來看看實際上可以做出什麼類型的應用吧~
 簡單的說，推理能力夠好的 LLM, 已經有辦法從:
 
-1. 可用的指令規格
+1. 可用的指令規格 (你手上有的工具)
 2. 你的意圖
 
 直接產生符合 (1) 跟 (2) 的對等 "指令執行順序" ..., 如昨天所說, 這是將文字敘述的意圖, 翻譯成指令集執行順序的編譯器了。這在過去不靠 AI 是完全做不到的事情，我才會說所有 AI 神奇的應用，大半都是從 Function Calling 的能力累積而來的。
@@ -350,7 +364,7 @@ RAG 主要檢索用的技巧, 就是把內容向量化。向量化的模型通常都有最適合的內容大小。以
 **Demo**: 
 
 1. [Multiple Plugins Demo](../UseMicrosoft_KernelMemoryPlugin/Program_Example06_MultiplePluginsDemo.cs)
-	1. [Synthesize Content for RAG](../UseMicrosoft_KernelMemoryPlugin/Program_Example07_SynthesisWithRAG.cs)
+1. [Synthesize Content for RAG](../UseMicrosoft_KernelMemoryPlugin/Program_Example07_SynthesisWithRAG.cs)
 
 
 

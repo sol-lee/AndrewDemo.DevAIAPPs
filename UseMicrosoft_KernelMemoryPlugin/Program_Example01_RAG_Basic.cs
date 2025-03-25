@@ -48,7 +48,7 @@ namespace UseMicrosoft_KernelMemoryPlugin
             Console.WriteLine(await kernel.InvokePromptAsync<string>(
                 """
                 <message role="system">請依據提供的 Facts 為基礎，回覆使用者提出的 Question。若你無法回答請直接回答 "我不知道!"。</message>
-                <message role="user">
+                <message role="user">   
                 
                 # Question
                 {{$question}}
