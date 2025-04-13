@@ -1,29 +1,29 @@
 # AndrewDemo.DevAIAPPs
 
-³o¬O§Ú¤¶²Ğ¦b§AªºªA°È¤º¨Ï¥Î AI (API) ¥Îªkªº»¡©ú½d¨Ò¡C
-¦b APP ¤º¨Ï¥Î AI ¦³´XºØ±`¨£ªº design pattern, ³o¸Ì§Ú·|¤¶²Ğ´XºØ±`¨£ªº¥Îªk¡A¥]§t:
+é€™æ˜¯æˆ‘ä»‹ç´¹åœ¨ä½ çš„æœå‹™å…§ä½¿ç”¨ AI (API) ç”¨æ³•çš„èªªæ˜ç¯„ä¾‹ã€‚
+åœ¨ APP å…§ä½¿ç”¨ AI æœ‰å¹¾ç¨®å¸¸è¦‹çš„ design pattern, é€™è£¡æˆ‘æœƒä»‹ç´¹å¹¾ç¨®å¸¸è¦‹çš„ç”¨æ³•ï¼ŒåŒ…å«:
 
-1. °ò¥»À³¥Î: chat completion
-1. µ²ºc¤Æ¿é¥X: json mode
-1. ©I¥s¥~³¡µ{¦¡: tool use / function calling
-1. ºî¦XÀ³¥Î: RAG
+1. åŸºæœ¬æ‡‰ç”¨: chat completion
+1. çµæ§‹åŒ–è¼¸å‡º: json mode
+1. å‘¼å«å¤–éƒ¨ç¨‹å¼: tool use / function calling
+1. ç¶œåˆæ‡‰ç”¨: RAG
 
-³o¨ÇÀ³¥Î®×¨Ò¡A¬°¤F»¡©ú­I«á¹B§@ªº¤è¦¡¡A§Ú¤À§O¥Î¤F¤TºØ¤£¦Pªº¨Ï¥Î¤è¦¡:
+é€™äº›æ‡‰ç”¨æ¡ˆä¾‹ï¼Œç‚ºäº†èªªæ˜èƒŒå¾Œé‹ä½œçš„æ–¹å¼ï¼Œæˆ‘åˆ†åˆ¥ç”¨äº†ä¸‰ç¨®ä¸åŒçš„ä½¿ç”¨æ–¹å¼:
 
 
 **Project**: UseOpenAI_SDK  
 
-1. ª½±µ¥Î http request ©I¥s [openai chatcompletion api](https://platform.openai.com/docs/api-reference/chat)
-1. ¨Ï¥Î [openai .net sdk](https://github.com/openai/openai-dotnet)
+1. ç›´æ¥ç”¨ http request å‘¼å« [openai chatcompletion api](https://platform.openai.com/docs/api-reference/chat)
+1. ä½¿ç”¨ [openai .net sdk](https://github.com/openai/openai-dotnet)
 
 **Project**: UseMicrosoft_SemanticKernel  
 
-1. ¨Ï¥Î [microsoft semantic kernel](https://github.com/microsoft/semantic-kernel/)
+1. ä½¿ç”¨ [microsoft semantic kernel](https://github.com/microsoft/semantic-kernel/)
 
 **Project**: UseMicrosoft_KernelMemoryPlugin  
 
-RAG ªº¶i¶¥À³¥Î, ¥]§t [microsoft kernel memory](https://github.com/microsoft/kernel-memory) ´£¨Ñµ¹ semantic kernel ¨Ï¥Îªº memory plugin, §Ú¿W¥ß¤@­Ó±M®×¨Ó¥Ü½d
-§Ú¤]´£¨Ñ¤F¤@­Ó¹ï·Ó²Õ¡A¥Î plugins ¨Ó©I¥s [Bing Web Search API](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview)
+RAG çš„é€²éšæ‡‰ç”¨, åŒ…å« [microsoft kernel memory](https://github.com/microsoft/kernel-memory) æä¾›çµ¦ semantic kernel ä½¿ç”¨çš„ memory plugin, æˆ‘ç¨ç«‹ä¸€å€‹å°ˆæ¡ˆä¾†ç¤ºç¯„
+æˆ‘ä¹Ÿæä¾›äº†ä¸€å€‹å°ç…§çµ„ï¼Œç”¨ plugins ä¾†å‘¼å« [Bing Web Search API](https://learn.microsoft.com/en-us/bing/search-apis/bing-web-search/overview)
 
 
 
@@ -31,13 +31,13 @@ RAG ªº¶i¶¥À³¥Î, ¥]§t [microsoft kernel memory](https://github.com/microsoft/kern
 
 
 
-# Àô¹Ò³]¸m Setup - User Secrets
+# ç’°å¢ƒè¨­ç½® Setup - User Secrets
 
-³o¥÷½d¨Ò¡A§Ú³£¨Ï¥Î OpenAI API ·í§@ LLM provider. ¹ïÀ³ªº APIKEY ½Ğ¦Û¦æ³]©w user secret.
-¥H¤U¬O»İ­n³]©wªº¶µ¥Ø:
+é€™ä»½ç¯„ä¾‹ï¼Œæˆ‘éƒ½ä½¿ç”¨ OpenAI API ç•¶ä½œ LLM provider. å°æ‡‰çš„ APIKEY è«‹è‡ªè¡Œè¨­å®š user secret.
+ä»¥ä¸‹æ˜¯éœ€è¦è¨­å®šçš„é …ç›®:
 
-¤T­Ó project(s) §Ú¥Îªº user secret ¦WºÙ³£ºû«ù¤@¦Ü, §A¥i¥H¦@¥Î¦P¤@²Õ user secret ¨S°İÃD¡C
-¥H¤U¬O§Ú½d¨Ò·|¥Î¨ìªºµ²ºc:
+ä¸‰å€‹ project(s) æˆ‘ç”¨çš„ user secret åç¨±éƒ½ç¶­æŒä¸€è‡³, ä½ å¯ä»¥å…±ç”¨åŒä¸€çµ„ user secret æ²’å•é¡Œã€‚
+ä»¥ä¸‹æ˜¯æˆ‘ç¯„ä¾‹æœƒç”¨åˆ°çš„çµæ§‹:
 
 ```json
 
@@ -50,32 +50,32 @@ RAG ªº¶i¶¥À³¥Î, ¥]§t [microsoft kernel memory](https://github.com/microsoft/kern
 
 ```
 
-«ö·Ó¶¶§Ç»¡©ú:
+æŒ‰ç…§é †åºèªªæ˜:
 
 **OpenAI:ApiKey**:  
-¦s¨ú openai api ¨Ï¥Î. ·|¥Î¨ì 4o, 4o-mini, o1 ³o¤T­Ó¼Ò«¬¡C  
+å­˜å– openai api ä½¿ç”¨. æœƒç”¨åˆ° 4o, 4o-mini, o1 é€™ä¸‰å€‹æ¨¡å‹ã€‚  
 
 - [X] Project: UseOpenAI_SDK
 - [X] Project: UseMicrosoft_SemanticKernel
 - [X] Project: UseMicrosoft_KernelMemoryPlugin
 
 **OpenAI:OrgId**:  
-Optional, ºŞ²z¥Î³~¡A¦s¨ú OpenAI ªA°È®É¡A¼Ğ¥Ü OrgID¡A¥i¥Î¨Ó«ö·Ó¤£¦P orgid «ü¬£ quota¡C  
+Optional, ç®¡ç†ç”¨é€”ï¼Œå­˜å– OpenAI æœå‹™æ™‚ï¼Œæ¨™ç¤º OrgIDï¼Œå¯ç”¨ä¾†æŒ‰ç…§ä¸åŒ orgid æŒ‡æ´¾ quotaã€‚  
 
 - [ ] Project: UseOpenAI_SDK
 - [ ] Project: UseMicrosoft_SemanticKernel
 - [ ] Project: UseMicrosoft_KernelMemoryPlugin
 
 **KernelMemory:ApiKey**:  
-¦s¨ú§A¦Û¤v¬[³] Microsoft Kernel Memory ®É»İ­n¨Ï¥Îªº APIKEY  
+å­˜å–ä½ è‡ªå·±æ¶è¨­ Microsoft Kernel Memory æ™‚éœ€è¦ä½¿ç”¨çš„ APIKEY  
 - [ ] Project: UseOpenAI_SDK
 - [ ] Project: UseMicrosoft_SemanticKernel
 - [X] Project: UseMicrosoft_KernelMemoryPlugin
 
 
 **BingSearch:ApiKey**:  
-¦s¨ú Bing Search Service ¨Ï¥Îªº APIKEY¡C  
-­Y­n°õ¦æ Example02, ½Ğ¥ı¨ì Azure ¥Ó½Ğ Bing Search Service APIKEY.  
+å­˜å– Bing Search Service ä½¿ç”¨çš„ APIKEYã€‚  
+è‹¥è¦åŸ·è¡Œ Example02, è«‹å…ˆåˆ° Azure ç”³è«‹ Bing Search Service APIKEY.  
 
 - [ ] Project: UseOpenAI_SDK
 - [ ] Project: UseMicrosoft_SemanticKernel
@@ -83,12 +83,12 @@ Optional, ºŞ²z¥Î³~¡A¦s¨ú OpenAI ªA°È®É¡A¼Ğ¥Ü OrgID¡A¥i¥Î¨Ó«ö·Ó¤£¦P orgid «ü¬£ qu
 	- [X] Example02: RAG with Search Plugins
 
 
-# ªA°È¬[³]: Microsoft Kernel Memory
+# æœå‹™æ¶è¨­: Microsoft Kernel Memory
 
-¥u­n¨â­Ó¨BÆJ¡A§A´N¥i¥H¬[³]¦Û¤vªº Microsoft Kernel Memory ªA°È¡C
-(1), «ö·Ó [©x¤èªº»¡©ú](https://github.com/microsoft/kernel-memory/tree/main?tab=readme-ov-file#kernel-memory-docker-image), °õ¦æ setup, °İµª¹Lµ{¤¤¦¬¶°¨ìªº³]©w¸ê°T, ³£·|¦s¦b appsettings.json¡C¥Î docker run ´N¥i¥H±Ò°ÊªA°È
-(2), ¥Ñ©óÁÙ­n·f°t qdrant ¦V¶q¸ê®Æ®w, ¦]¦¹§Ú¦Û¤v§Ë¤F¤@¥÷ docker-compose.yaml, ¤è«K¨Ì¦¸«Ø¸m¾ã®MÀô¹Ò, ¦³»İ­nªºªB¤Í¥i¥H±Ä¥Î§ÚªºÃi¤H¥]¡C
+åªè¦å…©å€‹æ­¥é©Ÿï¼Œä½ å°±å¯ä»¥æ¶è¨­è‡ªå·±çš„ Microsoft Kernel Memory æœå‹™ã€‚
+(1), æŒ‰ç…§ [å®˜æ–¹çš„èªªæ˜](https://github.com/microsoft/kernel-memory/tree/main?tab=readme-ov-file#kernel-memory-docker-image), åŸ·è¡Œ setup, å•ç­”éç¨‹ä¸­æ”¶é›†åˆ°çš„è¨­å®šè³‡è¨Š, éƒ½æœƒå­˜åœ¨ appsettings.jsonã€‚ç”¨ docker run å°±å¯ä»¥å•Ÿå‹•æœå‹™
+(2), ç”±æ–¼é‚„è¦æ­é… qdrant å‘é‡è³‡æ–™åº«, å› æ­¤æˆ‘è‡ªå·±å¼„äº†ä¸€ä»½ docker-compose.yaml, æ–¹ä¾¿ä¾æ¬¡å»ºç½®æ•´å¥—ç’°å¢ƒ, æœ‰éœ€è¦çš„æœ‹å‹å¯ä»¥æ¡ç”¨æˆ‘çš„æ‡¶äººåŒ…ã€‚
 
-±ÀÂË¦b WSL2 Àô¹Ò¤U°õ¦æ, ³o¼Ë¥i¥HÁ×§K¤@¨ÇÀô¹Ò³]©wªº°İÃD¡C¤£¹L³o­Ó½d¨Ò·|¥Î¨ì¦V¶q¸ê®Æ®w qdrant, Á×§K½ò¨ì WSL2 ªº IO ®Ä¯à°İÃDªº¦a¹p (IO ®Ä¯à®t¶Z¨ì 20x ¤§ÃĞ), ½Ğ°Ñ¦Ò§Úªº¤å³¹¦³§¹¾ã»¡©ú:
+æ¨è–¦åœ¨ WSL2 ç’°å¢ƒä¸‹åŸ·è¡Œ, é€™æ¨£å¯ä»¥é¿å…ä¸€äº›ç’°å¢ƒè¨­å®šçš„å•é¡Œã€‚ä¸éé€™å€‹ç¯„ä¾‹æœƒç”¨åˆ°å‘é‡è³‡æ–™åº« qdrant, é¿å…è¸©åˆ° WSL2 çš„ IO æ•ˆèƒ½å•é¡Œçš„åœ°é›· (IO æ•ˆèƒ½å·®è·åˆ° 20x ä¹‹è­œ), è«‹åƒè€ƒæˆ‘çš„æ–‡ç« æœ‰å®Œæ•´èªªæ˜:
 
-* [¥Î WSL + VSCode ­«·s¥´³y Linux ¶}µoÀô¹Ò](https://columns.chicken-house.net/2024/11/11/working-with-wsl/)
+* [ç”¨ WSL + VSCode é‡æ–°æ‰“é€  Linux é–‹ç™¼ç’°å¢ƒ](https://columns.chicken-house.net/2024/11/11/working-with-wsl/)
